@@ -1,12 +1,9 @@
 from pathlib import Path
 import re, sys
 root = Path(__file__).resolve().parents[1]
-BASE='/recherche-fuite-eau-angers'
 html = list(root.glob('*.html')) + list(root.glob('*/index.html'))
 
 def exists_target(href):
-    if href.startswith(BASE):
-        href = href[len(BASE):] or '/'
     if href in ['/styles.css','styles.css']:
         return (root/'styles.css').exists()
     if href == '/':
