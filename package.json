@@ -1,0 +1,10 @@
+{
+  "name": "recherche-fuite-eau-angers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP SEO local Recherche fuite eau Angers",
+  "scripts": {
+    "start": "python3 -m http.server 8765",
+    "check": "python3 scripts/check_site.py"
+  }
+}
