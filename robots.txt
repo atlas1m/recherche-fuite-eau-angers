@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://REPLACE_WITH_DOMAIN/sitemap.xml
+Sitemap: https://atlas1m.github.io/recherche-fuite-eau-angers/sitemap.xml
