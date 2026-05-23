@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://recherche-fuite-eau-angers.vercel.app/sitemap.xml
+Sitemap: https://recherche-fuite-eau-angers.fr/sitemap.xml
