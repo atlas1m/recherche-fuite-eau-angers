@@ -6,7 +6,7 @@ SITE = ROOT
 BASE = 'https://recherche-fuite-eau-angers.fr'
 FORBIDDEN_PATTERNS = [
     r'notre\s+entreprise\s+de\s+plomberie', r'nos\s+plombiers', r'nos\s+artisans',
-    r'adresse\s*:\s*\d', r'24\s*/\s*7\s+garanti', r'24h\s*/\s*24\s+garanti',
+    r'adresse\s*:\s*\d', r'24\s*/\s*7', r'24h\s*/\s*24', r'24\s+h\s*/\s*24',
     r'intervention\s+immédiate\s+garantie', r'prix\s+fixe\s+garanti',
     r'remboursement\s+assurance\s+garanti', r'avis\s+client\s*[:\-]'
 ]
