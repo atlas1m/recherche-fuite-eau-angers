@@ -7,8 +7,12 @@ BASE = 'https://recherche-fuite-eau-angers.fr'
 FORBIDDEN_PATTERNS = [
     r'notre\s+entreprise\s+de\s+plomberie', r'nos\s+plombiers', r'nos\s+artisans',
     r'adresse\s*:\s*\d', r'24\s*/\s*7', r'24h\s*/\s*24', r'24\s+h\s*/\s*24',
-    r'intervention\s+immédiate\s+garantie', r'prix\s+fixe\s+garanti',
-    r'remboursement\s+assurance\s+garanti', r'avis\s+client\s*[:\-]'
+    r'intervention\s+immédiate\s+garantie', r'garantie\s+d[’\']intervention\s+immédiate', r'prix\s+fixe\s+garanti',
+    r'remboursement\s+assurance\s+garanti', r'avis\s+client\s*[:\-]',
+    r'fausse\s+promesse', r'\bsans\s+promesse\b', r'\bpromesse\b',
+    r'\bschéma\b', r'\billustration\b', r'visuel\s+informatif',
+    r'\binvent[ée]e?\b', r'\btransparent\b', r'\btransparence\b',
+    r'\bOVH\b', r'\bTwilio\b', r'\bRetell\b', r'\bfallback\b'
 ]
 
 def strip_tags(x): return re.sub(r'<[^>]*>', ' ', x or '').strip()
@@ -32,7 +36,7 @@ def target_exists(href):
     return (SITE/path).exists() or (SITE/(path+'.html')).exists() or (SITE/path/'index.html').exists()
 def audit():
     files=sorted([p for p in SITE.rglob('*.html') if '.git' not in p.parts])
-    rows=[]; errors=[]; titles={}; metas={}; canonicals=[]
+    rows=[]; errors=[]; titles={}; metas={}; canonicals=[]; total_images=0
     for f in files:
         html=f.read_text(encoding='utf-8',errors='ignore')
         rel=str(f.relative_to(SITE))
@@ -56,6 +60,7 @@ def audit():
         missing=[href for href in links if not target_exists(href)]
         if missing: errors.append(f'{rel}: liens internes manquants {missing[:5]}')
         img_tags=re.findall(r'<img\b[^>]*>', html, re.I|re.S)
+        total_images += len(img_tags)
         for tag in img_tags:
             src=attr(tag, r'src=["\']([^"\']+)["\']')
             alt=attr(tag, r'alt=["\']([^"\']*)["\']')
@@ -89,6 +94,7 @@ def audit():
     canonical_folder_urls=sorted(set(r['canonical'] for r in rows if r['canonical'] and not r['file'].endswith('.html')))
     missing_sitemap=[u for u in canonical_folder_urls if u not in sitemap_urls]
     if missing_sitemap: errors.append(f'sitemap: URLs canoniques absentes {missing_sitemap[:10]}')
+    if total_images != 1: errors.append(f'images: attendu 1 photo métier unique, trouvé {total_images}')
     robots=(SITE/'robots.txt').read_text(encoding='utf-8') if (SITE/'robots.txt').exists() else ''
     if 'Sitemap:' not in robots: errors.append('robots.txt: Sitemap absent')
     return {'html_count':len(rows),'rows':rows,'errors':errors,'duplicate_title_groups':duplicate_title_groups,'duplicate_meta_groups':duplicate_meta_groups,'sitemap_url_count':len(sitemap_urls),'sitemap_urls':sitemap_urls,'robots_has_sitemap':'Sitemap:' in robots}
