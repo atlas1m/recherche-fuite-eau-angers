@@ -95,6 +95,11 @@ def audit():
     missing_sitemap=[u for u in canonical_folder_urls if u not in sitemap_urls]
     if missing_sitemap: errors.append(f'sitemap: URLs canoniques absentes {missing_sitemap[:10]}')
     if total_images != 1: errors.append(f'images: attendu 1 photo métier unique, trouvé {total_images}')
+    home=(SITE/'index.html').read_text(encoding='utf-8', errors='ignore').lower() if (SITE/'index.html').exists() else ''
+    human_urgency_terms=['fuite en cours','compteur qui tourne','dégât des eaux','coupez l’arrivée d’eau','appeler maintenant']
+    missing_urgency=[term for term in human_urgency_terms if term not in home]
+    if missing_urgency: errors.append(f'homepage: urgence humaine insuffisante {missing_urgency}')
+    if 'phone-big' not in home: errors.append('homepage: numéro principal visible manquant')
     robots=(SITE/'robots.txt').read_text(encoding='utf-8') if (SITE/'robots.txt').exists() else ''
     if 'Sitemap:' not in robots: errors.append('robots.txt: Sitemap absent')
     return {'html_count':len(rows),'rows':rows,'errors':errors,'duplicate_title_groups':duplicate_title_groups,'duplicate_meta_groups':duplicate_meta_groups,'sitemap_url_count':len(sitemap_urls),'sitemap_urls':sitemap_urls,'robots_has_sitemap':'Sitemap:' in robots}
