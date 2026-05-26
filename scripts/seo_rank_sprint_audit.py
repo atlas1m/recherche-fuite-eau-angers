@@ -55,6 +55,12 @@ def audit():
         links=re.findall(r'href=["\']([^"\']+)["\']', html)
         missing=[href for href in links if not target_exists(href)]
         if missing: errors.append(f'{rel}: liens internes manquants {missing[:5]}')
+        img_tags=re.findall(r'<img\b[^>]*>', html, re.I|re.S)
+        for tag in img_tags:
+            src=attr(tag, r'src=["\']([^"\']+)["\']')
+            alt=attr(tag, r'alt=["\']([^"\']*)["\']')
+            if not alt.strip(): errors.append(f'{rel}: image sans alt descriptif {src}')
+            if src.startswith('/') and not (SITE/src.strip('/')).exists(): errors.append(f'{rel}: image manquante {src}')
         expected=BASE+canonical_slug_from_file(f)
         if not title: errors.append(f'{rel}: title manquant')
         if not meta: errors.append(f'{rel}: meta description manquante')
