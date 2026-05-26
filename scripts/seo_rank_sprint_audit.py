@@ -84,14 +84,13 @@ def audit():
             if re.search(pat, low, re.I): bad.append(pat)
         if bad: errors.append(f'{rel}: claim interdit possible {bad}')
         human_text = ' '.join([title, meta] + h1 + h2 + [strip_tags(re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.I|re.S))]).lower()
-        métier_bad = [
-            r'recherche\s+de\s+fuite\s+non\s+destructive',
-            r'recherche\s+fuite\s+non\s+destructive',
-            r'recherche\s+non\s+destructive',
-            r'méthodes?\s+non\s+destructives?'
-        ]
-        métier_hits = [pat for pat in métier_bad if re.search(pat, human_text, re.I)]
-        if métier_hits: errors.append(f'{rel}: formulation métier à retravailler {métier_hits}')
+        if 'recherche-fuite-non-destructive-angers' in rel:
+            required_source_backed = ['non destructive', 'sans casse', 'gaz traceur', 'caméra thermique']
+            missing_source_backed = [term for term in required_source_backed if term not in human_text]
+            if missing_source_backed:
+                errors.append(f'{rel}: glossaire métier source-backed incomplet {missing_source_backed}')
+            if 'sans casser inutilement' not in human_text and 'sans démolition' not in human_text and 'sans dégradation' not in human_text:
+                errors.append(f'{rel}: explication humaine du terme non destructive manquante')
         titles.setdefault(title,[]).append(rel); metas.setdefault(meta,[]).append(rel); canonicals.append(canon)
         rows.append({'file':rel,'title':title,'meta_len':len(meta),'canonical':canon,'h1_count':len(h1),'h2_count':len(h2),'jsonld_blocks':len(jsonlds),'jsonld_types':jsonld_types,'faq': 'FAQPage' in json.dumps(jsonld_types), 'breadcrumb': 'BreadcrumbList' in json.dumps(jsonld_types),'tel': 'tel:' in html,'links':len(links),'missing_links':missing})
     dup_titles={k:v for k,v in titles.items() if k and len(v)>1 and not all(x.endswith('/index.html') or x.endswith('.html') for x in v)}
