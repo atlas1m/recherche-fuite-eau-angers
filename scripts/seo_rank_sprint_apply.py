@@ -243,12 +243,12 @@ IMAGE_LIBRARY = {
     'hero': ('/assets/images/fuite-hero-diagnostic.jpg', 'Technicien préparant un diagnostic de recherche de fuite en salle de bain'),
     'visual': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle photographique d’un raccord de canalisation'),
     'service': [
-        ('/assets/images/fuite-humidite-mur.jpg', 'Mur humide avec traces de dégât des eaux'),
-        ('/assets/images/fuite-camera-thermique.jpg', 'Appareil de diagnostic utilisé près d’une canalisation'),
-        ('/assets/images/fuite-compteur-eau.jpg', 'Compteur d’eau contrôlé pour détecter une surconsommation'),
-        ('/assets/images/fuite-degat-assurance.jpg', 'Mur abîmé par l’humidité avant dossier assurance'),
+        ('/assets/images/fuite-humidimetre-platre.jpg', 'Humidimètre utilisé sur un mur en plâtre avec trace d’humidité'),
+        ('/assets/images/fuite-thermographie-mur.jpg', 'Caméra thermique utilisée près d’un mur humide'),
+        ('/assets/images/fuite-compteur-releve.jpg', 'Relevé de compteur d’eau pour vérifier une surconsommation'),
+        ('/assets/images/fuite-rapport-assurance.jpg', 'Préparation d’un dossier assurance après dégât des eaux'),
         ('/assets/images/fuite-devis-prix.jpg', 'Éléments de chiffrage et matériel de plomberie'),
-        ('/assets/images/fuite-urgence-coupure.jpg', 'Fuite active sur siphon avant coupure ou réparation'),
+        ('/assets/images/fuite-coupure-vanne.jpg', 'Coupure d’une vanne d’arrivée d’eau en situation urgente'),
     ],
     'thumbs': [
         ('/assets/images/fuite-controle-humidite.jpg', 'Contrôle visuel de traces d’humidité'),
@@ -257,11 +257,55 @@ IMAGE_LIBRARY = {
     ],
 }
 
+# Final template matrix: each strategic keyword/page gets a deterministic photo slot.
+# Provenance and prompt notes live in the Hermes Obsidian vault only; repo contains runtime assets.
+IMAGE_BY_SLUG = {
+    '': IMAGE_LIBRARY['hero'],
+    'services': IMAGE_LIBRARY['hero'],
+    'about': ('/assets/images/fuite-hero-diagnostic.jpg', 'Technicien préparant un diagnostic de recherche de fuite en salle de bain'),
+    'locations': ('/assets/images/carte-secteur-angers.jpg', 'Carte indicative du secteur d’Angers et communes proches'),
+    'recherche-fuite-eau-angers': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite avec humidimètre sur mur en plâtre'),
+    'recherche-fuite-non-destructive-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Recherche de fuite non destructive avec caméra thermique'),
+    'prix-recherche-fuite-eau-angers': ('/assets/images/fuite-devis-prix.jpg', 'Éléments de devis pour recherche de fuite'),
+    'recherche-fuite-assurance-angers': ('/assets/images/fuite-rapport-assurance.jpg', 'Dossier assurance après dégât des eaux'),
+    'rapport-recherche-fuite-assurance-angers': ('/assets/images/fuite-rapport-assurance.jpg', 'Rapport de recherche de fuite pour dossier assurance'),
+    'degat-des-eaux-angers': ('/assets/images/fuite-degat-assurance.jpg', 'Mur abîmé par humidité après dégât des eaux'),
+    'fuite-apres-compteur-angers': ('/assets/images/fuite-compteur-releve.jpg', 'Relevé de compteur pour suspicion de fuite après compteur'),
+    'fuite-compteur-eau-angers': ('/assets/images/fuite-compteur-eau.jpg', 'Compteur d’eau contrôlé pour détecter une surconsommation'),
+    'fuite-plafond-angers': ('/assets/images/fuite-plafond-goutte.jpg', 'Tache au plafond et goutte liée à une fuite'),
+    'fuite-douche-angers': ('/assets/images/fuite-douche-joint.jpg', 'Trace d’humidité près d’une douche et de ses joints'),
+    'fuite-salle-de-bain-angers': ('/assets/images/fuite-douche-joint.jpg', 'Salle de bain avec signes d’humidité à contrôler'),
+    'fuite-sous-evier-angers': ('/assets/images/fuite-sous-evier.jpg', 'Fuite sous évier autour du siphon et des canalisations'),
+    'fuite-sous-carrelage-angers': ('/assets/images/fuite-humidite-mur.jpg', 'Humidité en bas de mur près d’un sol carrelé'),
+    'fuite-chauffage-angers': ('/assets/images/fuite-chauffage-pression.jpg', 'Contrôle de pression chaudière sur circuit de chauffage'),
+    'recherche-fuite-enterree-angers': ('/assets/images/fuite-enterree-jardin.jpg', 'Zone extérieure humide pouvant indiquer une fuite enterrée'),
+    'fuite-canalisation-angers': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle de raccord de canalisation'),
+    'detection-fuite-eau-angers': ('/assets/images/fuite-gaz-traceur.jpg', 'Préparation d’un contrôle par gaz traceur sur canalisation'),
+    'recherche-fuite-thermographie-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Thermographie appliquée à une recherche de fuite'),
+    'humidite-mur-angers': ('/assets/images/fuite-humidimetre-platre.jpg', 'Mesure d’humidité sur plâtre avec outil adapté'),
+    'fuite-toiture-angers': ('/assets/images/fuite-plafond-goutte.jpg', 'Trace de plafond pouvant venir d’une infiltration toiture'),
+    'recherche-fuite-copropriete-angers': ('/assets/images/fuite-copropriete-couloir.jpg', 'Couloir de copropriété avec trace d’humidité à signaler'),
+    'recherche-fuite-syndic-angers': ('/assets/images/fuite-copropriete-couloir.jpg', 'Contexte syndic et copropriété pour dégât des eaux'),
+    'recherche-fuite-appartement-angers': ('/assets/images/fuite-plafond-goutte.jpg', 'Fuite en appartement avec trace au plafond'),
+    'recherche-fuite-maison-angers': ('/assets/images/fuite-enterree-jardin.jpg', 'Maison avec zone extérieure humide à contrôler'),
+    'recherche-fuite-urgence-angers': ('/assets/images/fuite-coupure-vanne.jpg', 'Coupure de vanne d’eau en urgence fuite'),
+    'recherche-fuite-avrille': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite en logement autour d’Avrillé'),
+    'recherche-fuite-trelaze': ('/assets/images/fuite-compteur-releve.jpg', 'Contrôle compteur pour demande autour de Trélazé'),
+    'recherche-fuite-les-ponts-de-ce': ('/assets/images/fuite-douche-joint.jpg', 'Contrôle salle de bain pour demande aux Ponts-de-Cé'),
+    'recherche-fuite-maine-et-loire': ('/assets/images/fuite-enterree-jardin.jpg', 'Contexte maison et canalisation extérieure en Maine-et-Loire'),
+}
+
 def _img(key, *, index=0, class_name='', loading='lazy', width=1024, height=576):
     value = IMAGE_LIBRARY[key]
     src, alt = value[index % len(value)] if isinstance(value, list) else value
     cls = f' class="{class_name}"' if class_name else ''
     return f'<img src="{src}" alt="{html.escape(alt)}" width="{width}" height="{height}" loading="{loading}" decoding="async"{cls}>'
+
+def _page_img(slug, *, class_name='', loading='lazy', width=1024, height=576):
+    src, alt = IMAGE_BY_SLUG.get(slug, IMAGE_LIBRARY['visual'])
+    cls = f' class="{class_name}"' if class_name else ''
+    slot = html.escape(slug or "home")
+    return f'<img src="{src}" alt="{html.escape(alt)}" width="{width}" height="{height}" loading="{loading}" decoding="async" data-keyword-slot="{slot}"{cls}>'
 
 AREA_LINKS = [
     ('/recherche-fuite-eau-angers/', 'Angers'),
@@ -292,7 +336,7 @@ STATIC_AUTOG_PAGES = {
         'title': 'Secteurs recherche fuite Angers et alentours',
         'h1': 'Secteurs couverts autour d’Angers',
         'meta': 'Pages par secteurs autour d’Angers pour préparer une demande de recherche de fuite ou dégât des eaux.',
-        'lead': 'Les pages de secteur servent à cadrer la demande selon la commune, le type de bâtiment et les contraintes de déplacement à confirmer.',
+        'lead': 'Les pages de secteur servent à cadrer la demande selon la commune, le type de bâtiment et les contraintes de déplacement à confirmer. Elles évitent de promettre une présence locale non vérifiée : la zone, la disponibilité, le bon interlocuteur, le type de fuite, l’urgence réelle, les accès et le besoin de rapport doivent toujours être qualifiés avant transmission utile.',
         'sections': [('Secteurs à consulter', [label for _, label in AREA_LINKS])],
         'faq': []
     },
@@ -354,8 +398,8 @@ def _nav_html():
 def _quote_form():
     return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs — formulaire non connecté</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="5"></textarea></label><a class="submit-like" href="tel:{PHONE_TEL}">Appeler / qualifier</a></form></aside>'''
 
-def _lead_capture(heading):
-    return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2>{_img('hero', loading='eager')}<a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
+def _lead_capture(heading, slug=''):
+    return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2>{_page_img(slug, loading='eager')}<a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
 
 def _intro(cfg):
     return f'''<section class="intro wrap"><h1>{html.escape(cfg['h1'])}</h1><p>{html.escape(cfg['lead'])}</p><p><strong>Avant l’appel</strong><br>Couper l’arrivée d’eau si elle est accessible, éviter les zones électriques humides, photographier les traces et noter le relevé du compteur. Si le problème touche un voisin, une copropriété ou un logement loué, gardez aussi une trace écrite des personnes prévenues.</p><p><strong>À propos</strong><br>Ce site sert à transformer une situation floue — compteur qui tourne, tache au plafond, mur humide, dégât des eaux — en demande claire. Il ne remplace pas le diagnostic d’un professionnel : il aide à préparer les informations, à distinguer urgence réelle et demande planifiable, puis à orienter la conversation vers les bonnes questions.</p><p><strong>Services</strong><br>Les pages ci-dessous reprennent les cas les plus fréquents : recherche non destructive, assurance, fuite après compteur, prix, urgence, copropriété et secteurs autour d’Angers. Chaque rubrique vise un angle distinct pour éviter la répétition mécanique : symptôme, méthode, dossier administratif, coût, sécurité ou zone couverte.</p><p><strong>Cadre local</strong><br>Les coordonnées locales, retours clients, délais, tarifs et disponibilités sont publiés uniquement après validation. Cette prudence protège le visiteur : une demande de fuite d’eau dépend toujours du bâtiment, de l’accès, du réseau concerné, de l’assurance et du niveau de dommage déjà visible.</p></section>'''
@@ -398,6 +442,12 @@ def _detail_sections(cfg):
     out.append('</section>')
     return ''.join(out)
 
+def _keyword_depth(slug, cfg):
+    if slug in ('', 'services', 'about'):
+        return ''
+    h1 = cfg.get('h1', 'Recherche de fuite')
+    return f'''<section class="keyword-depth wrap"><h2>Comment qualifier cette demande</h2><p>Cette page traite un angle précis : {html.escape(h1.lower())}. Pour qu’un appel soit exploitable, il faut relier le symptôme visible au contexte du bâtiment : pièce concernée, moment d’apparition, évolution de l’humidité, relevé du compteur, statut du logement et personnes déjà prévenues. Cette qualification évite de confondre une fuite active, une infiltration ancienne, un défaut d’évacuation, un problème de chauffage ou un dossier surtout administratif.</p><p>La photo associée à cette page sert de repère métier, pas de décoration : elle rappelle le type de signe ou de méthode à examiner avant de choisir une intervention. Les mots-clés sont donc répartis par intention — symptôme, méthode, assurance, prix, urgence ou secteur — au lieu de répéter mécaniquement la même expression dans tous les titres. L’objectif est une page utile pour un propriétaire, un locataire, un syndic ou un gestionnaire qui doit expliquer la situation sans inventer de diagnostic.</p><p>Avant de transmettre une demande, le visiteur doit pouvoir répondre simplement à trois points : où l’eau apparaît, ce qui change dans le temps, et quel document ou interlocuteur est attendu ensuite. Cette couche rend la template réutilisable pour d’autres villes : on remplace la commune, les pages secteur et les photos métier, tout en conservant le même contrôle de densité, de prudence et de cohérence humaine.</p></section>'''
+
 def _footer():
     return f'''<footer class="site-footer"><div class="wrap footer-grid"><div><h2>Accueil</h2><p><a href="/">Accueil</a></p><p><a href="/services/">Services</a></p><p><a href="/about/">À propos</a></p><p><a href="/contact/">Contact</a></p></div><div><h2>Services</h2><p><a href="/recherche-fuite-non-destructive-angers/">Sans casse</a></p><p><a href="/recherche-fuite-assurance-angers/">Assurance</a></p><p><a href="/prix-recherche-fuite-eau-angers/">Prix</a></p></div><div><h2>Contact</h2><p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/politique-confidentialite/">Confidentialité</a></p></div></div></footer><a class="sticky-call" href="tel:{PHONE_TEL}">APPELER : {PHONE_DISPLAY}</a>'''
 
@@ -413,19 +463,19 @@ def render_reference(slug, cfg):
     title = cfg['title']; meta = cfg['meta']
     head = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><meta name="description" content="{html.escape(meta)}"><link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(meta)}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/styles.css"><script type="application/ld+json">{jsonld_for(slug, title, meta, cfg.get('faq') or [])}</script></head><body>'''
     if slug == '':
-        body = _nav_html() + _lead_capture('Angers Détection Fuite Pros') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+        body = _nav_html() + _lead_capture('Angers Détection Fuite Pros', slug) + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('services',):
-        body = _nav_html() + _lead_capture('Services recherche de fuite') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+        body = _nav_html() + _lead_capture('Services recherche de fuite', slug) + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('about',):
         body = _about_page(cfg)
     elif slug in ('locations',):
-        body = _nav_html() + _lead_capture('Secteurs autour d’Angers') + _intro(cfg) + _areas() + _detail_sections(cfg) + _contact_strip() + _proof_block() + _footer()
+        body = _nav_html() + _lead_capture('Secteurs autour d’Angers', slug) + _intro(cfg) + _areas() + _keyword_depth(slug, cfg) + _detail_sections(cfg) + _contact_strip() + _proof_block() + _footer()
     else:
-        body = _nav_html() + _lead_capture(cfg['h1']) + _intro(cfg) + _detail_sections(cfg) + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+        body = _nav_html() + _lead_capture(cfg['h1'], slug) + _intro(cfg) + _keyword_depth(slug, cfg) + _detail_sections(cfg) + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     return head + body + '</body></html>\n'
 
 # Build canonical slug set, including the reference navigation pages.
-autoglass_slugs = [''] + sorted(set(slugs + ['services', 'about', 'locations']))
+autoglass_slugs = [''] + sorted(set([s for s in slugs if s] + ['services', 'about', 'locations']))
 for slug in autoglass_slugs:
     content = render_reference(slug, _page_cfg(slug))
     if slug == '':

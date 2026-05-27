@@ -104,6 +104,8 @@ def audit():
     duplicate_meta_groups={k:v for k,v in metas.items() if k and len(v)>2}
     sitemap=(SITE/'sitemap.xml').read_text(encoding='utf-8') if (SITE/'sitemap.xml').exists() else ''
     sitemap_urls=re.findall(r'<loc>(.*?)</loc>', sitemap)
+    dup_sitemap=sorted([u for u in set(sitemap_urls) if sitemap_urls.count(u) > 1])
+    if dup_sitemap: errors.append(f'sitemap: URLs dupliquées {dup_sitemap[:10]}')
     canonical_folder_urls=sorted(set(r['canonical'] for r in rows if r['canonical'] and not r['file'].endswith('.html')))
     missing_sitemap=[u for u in canonical_folder_urls if u not in sitemap_urls]
     if missing_sitemap: errors.append(f'sitemap: URLs canoniques absentes {missing_sitemap[:10]}')
@@ -139,6 +141,25 @@ def audit():
     repeated_home_imgs = {src: home_img_srcs.count(src) for src in unique_home_imgs if home_img_srcs.count(src) > 2}
     if repeated_home_imgs:
         errors.append(f'homepage: photo répétée trop souvent {repeated_home_imgs}')
+    # Final template guard: strategic canonical pages need a deterministic keyword photo slot.
+    exempt_keyword_slots={'/','/about/','/services/','/mentions-legales/','/politique-confidentialite/','/methodologie/'}
+    for url in sitemap_urls:
+        path=urllib.parse.urlparse(url).path or '/'
+        if path in exempt_keyword_slots:
+            continue
+        rel='index.html' if path == '/' else path.strip('/') + '/index.html'
+        f=SITE/rel
+        if not f.exists():
+            continue
+        page_html=f.read_text(encoding='utf-8', errors='ignore')
+        if 'data-keyword-slot=' not in page_html:
+            errors.append(f'{rel}: photo keyword-slot absente')
+        page_imgs=re.findall(r'<img\b[^>]*\bsrc=["\']([^"\']+)["\']', page_html, re.I|re.S)
+        if len(set(page_imgs)) < 4:
+            errors.append(f'{rel}: variété visuelle page insuffisante ({len(set(page_imgs))} images uniques, minimum 4)')
+        w=visible_word_count(page_html)
+        if w < 760:
+            errors.append(f'{rel}: densité page topicale insuffisante ({w} mots, minimum 760)')
     human_urgency_terms=['compteur qui tourne','dégât des eaux','couper l’arrivée d’eau','appeler']
     missing_urgency=[term for term in human_urgency_terms if term not in home]
     if missing_urgency: errors.append(f'homepage: urgence humaine insuffisante {missing_urgency}')
