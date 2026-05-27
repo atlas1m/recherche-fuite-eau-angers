@@ -12,7 +12,10 @@ FORBIDDEN_PATTERNS = [
     r'fausse\s+promesse', r'\bsans\s+promesse\b', r'\bpromesse\b',
     r'\bschéma\b', r'\billustration\b', r'visuel\s+informatif',
     r'\binvent[ée]e?\b', r'\btransparent\b', r'\btransparence\b',
-    r'\bOVH\b', r'\bTwilio\b', r'\bRetell\b', r'\bfallback\b'
+    r'\bOVH\b', r'\bTwilio\b', r'\bRetell\b', r'\bfallback\b',
+    # Anti-boulettes: never expose generator/audit/SEO filler language to visitors.
+    r'\btemplate\b', r'\bmots-cl[ée]s\b', r'photo\s+associ[ée]e', r'angle\s+pr[ée]cis',
+    r'cette\s+couche', r'r[ée]p[ée]ter\s+m[ée]caniquement'
 ]
 
 def strip_tags(x): return re.sub(r'<[^>]*>', ' ', x or '').strip()
@@ -84,10 +87,14 @@ def audit():
         if not any(t=='BreadcrumbList' for t in jsonld_types): errors.append(f'{rel}: BreadcrumbList absent')
         if 'tel:' not in html: errors.append(f'{rel}: CTA tel absent')
         bad=[]
-        low=html.lower()
+        visible_for_dup = re.sub(r'\s+', ' ', strip_tags(re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.I|re.S))).strip()
+        low=visible_for_dup.lower()
         for pat in FORBIDDEN_PATTERNS:
             if re.search(pat, low, re.I): bad.append(pat)
-        if bad: errors.append(f'{rel}: claim interdit possible {bad}')
+        if bad: errors.append(f'{rel}: claim/langage interne interdit possible {bad}')
+        sector_sequence = 'Angers Avrillé Trélazé Les Ponts-de-Cé Maine-et-Loire'
+        if visible_for_dup.count(sector_sequence) > 1:
+            errors.append(f'{rel}: bloc secteurs dupliqué visible ({visible_for_dup.count(sector_sequence)} occurrences)')
         human_text = ' '.join([title, meta] + h1 + h2 + [strip_tags(re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.I|re.S))]).lower()
         if 'recherche-fuite-non-destructive-angers' in rel:
             required_source_backed = ['non destructive', 'sans casse', 'gaz traceur', 'caméra thermique']
