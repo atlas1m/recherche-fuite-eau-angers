@@ -207,3 +207,198 @@ sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitem
 (SITE/'sitemap.xml').write_text(sitemap,encoding='utf-8')
 (SITE/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: https://recherche-fuite-eau-angers.fr/sitemap.xml\n',encoding='utf-8')
 print(f'Wrote {len(PAGES)} P0 pages, {len(NEW_PAGES)} new topical pages, homepage/methodologie, sitemap with {len(slugs)} URLs.')
+
+# -----------------------------------------------------------------------------
+# Autoglass-style structural overlay
+# Maxime requested to copy the reference site's structure exactly enough to stop
+# drifting into decorative AI layouts. This keeps the Angers content and white-hat
+# constraints, but uses the reference IA: narrow phone/nav header, immediate two-
+# column lead-capture block, intro text, alternating service rows, FAQ links,
+# service-area block, secondary contact/image row, proof block, and compact footer.
+# -----------------------------------------------------------------------------
+
+REFERENCE_NAV = [
+    ('/', 'Accueil'),
+    ('/services/', 'Services'),
+    ('/about/', 'À propos'),
+    ('/locations/', 'Secteurs'),
+    ('/contact/', 'Contact'),
+]
+
+SERVICE_ROWS = [
+    ('/recherche-fuite-eau-angers/', 'Recherche fuite eau Angers', 'Qualifier les signes visibles, l’urgence, le statut du logement et le besoin éventuel d’un rapport avant d’orienter la demande.'),
+    ('/recherche-fuite-non-destructive-angers/', 'Recherche non destructive', 'Structurer les cas où caméra thermique, gaz traceur, électro-acoustique ou inspection peuvent éviter une casse inutile.'),
+    ('/fuite-apres-compteur-angers/', 'Fuite après compteur', 'Préparer les relevés d’index, la surconsommation et les éléments utiles avant de demander un diagnostic.'),
+    ('/recherche-fuite-assurance-angers/', 'Assurance et rapport', 'Rassembler photos, déclaration, syndic ou propriétaire, et comprendre ce qu’un rapport peut ou non prouver.'),
+    ('/prix-recherche-fuite-eau-angers/', 'Prix et devis', 'Identifier ce qui influence le devis sans annoncer de tarif non vérifié : accès, méthode, rapport, urgence et réparation.'),
+    ('/recherche-fuite-urgence-angers/', 'Fuite urgente', 'Prioriser sécurité, coupure d’eau, voisin touché et premier tri avant toute promesse de disponibilité.'),
+]
+
+AREA_LINKS = [
+    ('/recherche-fuite-eau-angers/', 'Angers'),
+    ('/recherche-fuite-avrille/', 'Avrillé'),
+    ('/recherche-fuite-trelaze/', 'Trélazé'),
+    ('/recherche-fuite-les-ponts-de-ce/', 'Les Ponts-de-Cé'),
+    ('/recherche-fuite-maine-et-loire/', 'Maine-et-Loire'),
+]
+
+STATIC_AUTOG_PAGES = {
+    'services': {
+        'title': 'Services recherche fuite eau Angers : situations et méthodes',
+        'h1': 'Services de recherche de fuite à Angers',
+        'meta': 'Services et situations de recherche de fuite à Angers : fuite active, compteur, assurance, non destructif, prix et zones proches.',
+        'lead': 'Retrouvez les principales situations à qualifier avant une recherche de fuite : symptôme, méthode, assurance, urgence et zone concernée.',
+        'sections': [('Services principaux', [label for _, label, _ in SERVICE_ROWS])],
+        'faq': []
+    },
+    'about': {
+        'title': 'À propos : information indépendante recherche fuite Angers',
+        'h1': 'À propos de ce guide indépendant',
+        'meta': 'À propos du service indépendant d’information et d’orientation pour recherche de fuite à Angers.',
+        'lead': 'Ce site organise l’information utile avant une demande de recherche de fuite. Il ne publie pas d’adresse locale, d’avis ou de promesse non vérifiés.',
+        'sections': [('Positionnement', ['Information locale structurée.', 'Qualification de la situation avant orientation.', 'Pas de fausse adresse, pas de faux avis, pas de tarif inventé.'])],
+        'faq': []
+    },
+    'locations': {
+        'title': 'Secteurs recherche fuite Angers et alentours',
+        'h1': 'Secteurs couverts autour d’Angers',
+        'meta': 'Pages par secteurs autour d’Angers pour préparer une demande de recherche de fuite ou dégât des eaux.',
+        'lead': 'Les pages de secteur servent à cadrer la demande selon la commune, le type de bâtiment et les contraintes de déplacement à confirmer.',
+        'sections': [('Secteurs à consulter', [label for _, label in AREA_LINKS])],
+        'faq': []
+    },
+    'mentions-legales': {
+        'title': 'Mentions légales',
+        'h1': 'Mentions légales',
+        'meta': 'Mentions légales du site recherche-fuite-eau-angers.fr.',
+        'lead': 'Site indépendant d’information et d’orientation. Les informations opérationnelles doivent être confirmées par un professionnel qualifié.',
+        'sections': [('Transparence', ['Pas une entreprise de plomberie.', 'Pas d’adresse locale affichée sans vérification.', 'Pas d’avis clients affichés sans source.'])],
+        'faq': []
+    },
+    'politique-confidentialite': {
+        'title': 'Politique de confidentialité',
+        'h1': 'Politique de confidentialité',
+        'meta': 'Politique de confidentialité du site recherche-fuite-eau-angers.fr.',
+        'lead': 'La version actuelle privilégie l’appel téléphonique. Aucun formulaire connecté n’est annoncé sur cette page sans validation technique.',
+        'sections': [('Données', ['Ne transmettez pas d’information sensible inutile.', 'La qualification doit rester proportionnée à la demande.', 'Les modalités exactes seront mises à jour si un formulaire connecté est activé.'])],
+        'faq': []
+    },
+}
+
+def _cfg_from_new(slug, data):
+    title, h1, meta, signs, steps = data
+    return {
+        'title': title,
+        'h1': h1,
+        'meta': meta,
+        'lead': 'Page locale d’information pour préparer une demande de recherche de fuite à Angers, avec qualification préalable et limites clairement annoncées.',
+        'sections': [('Signes typiques', signs), ('Actions utiles avant diagnostic', steps)],
+        'faq': [('Cette page remplace-t-elle un diagnostic ?', 'Non. Elle aide à préparer les informations avant l’avis d’un professionnel qualifié.')]
+    }
+
+def _generic_cfg(slug):
+    label = slug.replace('-', ' ')
+    return {
+        'title': label.capitalize() + ' : recherche fuite Angers',
+        'h1': label.capitalize(),
+        'meta': 'Page locale pour préparer une demande de recherche de fuite à Angers et alentours.',
+        'lead': 'Cette page aide à cadrer la situation, les signes observés et les informations utiles avant une éventuelle orientation.',
+        'sections': [('À vérifier', ['Symptôme principal et pièce concernée.', 'Évolution de la trace ou de la consommation.', 'Contexte propriétaire, locataire, syndic ou assurance.'])],
+        'faq': []
+    }
+
+def _page_cfg(slug):
+    if slug == '':
+        return home_cfg
+    if slug in PAGES:
+        return PAGES[slug]
+    if slug in NEW_PAGES:
+        return _cfg_from_new(slug, NEW_PAGES[slug])
+    if slug in STATIC_AUTOG_PAGES:
+        return STATIC_AUTOG_PAGES[slug]
+    return _generic_cfg(slug)
+
+def _nav_html():
+    items = ''.join(f'<li><a href="{href}">{html.escape(label)}</a></li>' for href, label in REFERENCE_NAV)
+    return f'''<header class="site-header"><div class="topline wrap"><a class="phone-wordmark" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><nav aria-label="Navigation principale"><ul>{items}</ul></nav></div></header>'''
+
+def _quote_form():
+    return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs — formulaire non connecté</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="5"></textarea></label><a class="submit-like" href="tel:{PHONE_TEL}">Appeler / qualifier</a></form></aside>'''
+
+def _lead_capture(heading):
+    return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2><img src="/assets/images/artisan-recherche-fuite.png" alt="Recherche de fuite d’eau avec matériel de diagnostic" width="1024" height="576"><a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
+
+def _intro(cfg):
+    return f'''<section class="intro wrap"><h1>{html.escape(cfg['h1'])}</h1><p>{html.escape(cfg['lead'])}</p><p><strong>À propos</strong><br>Ce site sert à transformer une situation floue — compteur qui tourne, tache au plafond, mur humide, dégât des eaux — en demande claire. Il garde une position prudente : pas de fausse adresse, pas de faux avis, pas de promesse de délai ou de prix sans qualification.</p><p><strong>Services</strong><br>Les pages ci-dessous reprennent les cas les plus fréquents : recherche non destructive, assurance, fuite après compteur, prix, urgence, copropriété et secteurs autour d’Angers.</p></section>'''
+
+def _service_rows():
+    out = ['<section class="service-rows wrap" aria-label="Services principaux">']
+    for i, (href, title, text) in enumerate(SERVICE_ROWS):
+        img = '<div class="service-img"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic de fuite eau Angers" loading="lazy"></div>'
+        copy = f'<div class="service-copy"><h2>{html.escape(title)}</h2><p>{html.escape(text)}</p><p><a href="{href}">Lire la page</a></p></div>'
+        out.append(f'<article class="service-row">{img + copy if i % 2 == 0 else copy + img}</article>')
+    out.append('</section>')
+    return ''.join(out)
+
+def _faq_links(cfg):
+    faq = cfg.get('faq') or home_cfg.get('faq') or []
+    items = ''.join(f'<li><a href="#{i}">{html.escape(q)}</a></li>' for i, (q, _) in enumerate(faq[:6], 1))
+    if not items:
+        items = ''.join(f'<li><a href="{href}">{html.escape(label)}</a></li>' for href, label, _ in SERVICE_ROWS[:6])
+    return f'<section class="faq-list wrap"><h2>Questions fréquentes</h2><ul>{items}</ul></section>'
+
+def _areas():
+    items = ''.join(f'<li><a href="{href}">{html.escape(label)}</a></li>' for href, label in AREA_LINKS)
+    return f'<section class="areas"><div class="wrap"><h2>Recherche de fuite autour d’Angers</h2><ul>{items}</ul></div></section>'
+
+def _contact_strip():
+    return f'''<section class="contact-strip wrap"><h2>Contactez-nous pour qualifier la situation</h2><p>Préparez le quartier, le type de bien, le symptôme principal, le niveau d’urgence et le contexte assurance ou syndic.</p><div class="thumb-row"><img src="/assets/images/artisan-recherche-fuite.png" alt="Contrôle humidité" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Inspection canalisation" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic non destructif" loading="lazy"></div></section>'''
+
+def _proof_block():
+    return f'''<section class="proof"><div class="wrap"><h2>Transparence avant mise en relation</h2><div class="proof-cols"><p>Pas de faux avis : les preuves client ne seront affichées qu’après collecte vérifiable.</p><p>Pas de fausse adresse : aucune implantation locale n’est publiée sans validation.</p><p>Pas de tarif inventé : prix, disponibilité et prise en charge assurance restent à confirmer.</p></div><p><a class="call-now dark" href="tel:{PHONE_TEL}">APPELER</a></p></div></section>'''
+
+def _detail_sections(cfg):
+    out = ['<section class="detail wrap">']
+    for i, (heading, bullets) in enumerate(cfg.get('sections', [])[:4], 1):
+        tag = 'ol' if heading.startswith('À traiter') or 'Actions utiles' in heading or 'Premières actions' in heading else 'ul'
+        out.append(f'<section id="{i}"><h2>{html.escape(heading)}</h2><{tag}>')
+        for b in bullets:
+            out.append(f'<li>{html.escape(b)}</li>')
+        out.append(f'</{tag}></section>')
+    out.append('</section>')
+    return ''.join(out)
+
+def _footer():
+    return f'''<footer class="site-footer"><div class="wrap footer-grid"><div><h2>Accueil</h2><p><a href="/">Accueil</a></p><p><a href="/services/">Services</a></p><p><a href="/about/">À propos</a></p><p><a href="/contact/">Contact</a></p></div><div><h2>Services</h2><p><a href="/recherche-fuite-non-destructive-angers/">Sans casse</a></p><p><a href="/recherche-fuite-assurance-angers/">Assurance</a></p><p><a href="/prix-recherche-fuite-eau-angers/">Prix</a></p></div><div><h2>Contact</h2><p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/politique-confidentialite/">Confidentialité</a></p></div></div></footer><a class="sticky-call" href="tel:{PHONE_TEL}">APPELER : {PHONE_DISPLAY}</a>'''
+
+def render_reference(slug, cfg):
+    url = BASE + ('/' if slug == '' else f'/{slug}/')
+    title = cfg['title']; meta = cfg['meta']
+    head = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><meta name="description" content="{html.escape(meta)}"><link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(meta)}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/styles.css"><script type="application/ld+json">{jsonld_for(slug, title, meta, cfg.get('faq') or [])}</script></head><body>'''
+    if slug == '':
+        body = _nav_html() + _lead_capture('Recherche Fuite Eau Angers') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+    elif slug in ('services',):
+        body = _nav_html() + _lead_capture('Services recherche de fuite') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+    elif slug in ('locations',):
+        body = _nav_html() + _lead_capture('Secteurs autour d’Angers') + _intro(cfg) + _areas() + _detail_sections(cfg) + _contact_strip() + _proof_block() + _footer()
+    else:
+        body = _nav_html() + _lead_capture(cfg['h1']) + _intro(cfg) + _detail_sections(cfg) + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+    return head + body + '</body></html>\n'
+
+# Build canonical slug set, including the reference navigation pages.
+autoglass_slugs = [''] + sorted(set(slugs + ['services', 'about', 'locations']))
+for slug in autoglass_slugs:
+    content = render_reference(slug, _page_cfg(slug))
+    if slug == '':
+        (SITE / 'index.html').write_text(content, encoding='utf-8')
+    else:
+        (SITE / slug).mkdir(exist_ok=True)
+        (SITE / slug / 'index.html').write_text(content, encoding='utf-8')
+        (SITE / f'{slug}.html').write_text(content, encoding='utf-8')
+
+sitemap_urls = []
+for slug in autoglass_slugs:
+    loc = BASE + ('/' if slug == '' else f'/{slug}/')
+    sitemap_urls.append(f'  <url><loc>{loc}</loc><priority>{priorities.get(slug, 0.7):.1f}</priority></url>')
+(SITE / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(sitemap_urls) + '\n</urlset>\n', encoding='utf-8')
+print(f'Applied Autoglass-style structure to {len(autoglass_slugs)} canonical URLs.')
