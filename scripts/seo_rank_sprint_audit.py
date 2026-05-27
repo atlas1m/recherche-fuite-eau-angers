@@ -129,10 +129,16 @@ def audit():
     home_img_srcs = re.findall(r'<img\b[^>]*\bsrc=["\']([^"\']+)["\']', home, re.I|re.S)
     unique_home_imgs = sorted(set(home_img_srcs))
     if len(unique_home_imgs) < 8:
-        errors.append(f'homepage: variété visuelle insuffisante ({len(unique_home_imgs)} images uniques, minimum 8)')
+        errors.append(f'homepage: variété visuelle insuffisante ({len(unique_home_imgs)} photos uniques, minimum 8)')
+    non_photo_home_imgs = [src for src in unique_home_imgs if src.startswith('/assets/images/') and not re.search(r'\.(jpe?g|png|webp)(?:$|[?#])', src, re.I)]
+    if non_photo_home_imgs:
+        errors.append(f'homepage: assets non-photo interdits dans la template {non_photo_home_imgs}')
+    svg_home_imgs = [src for src in unique_home_imgs if re.search(r'\.svg(?:$|[?#])', src, re.I)]
+    if svg_home_imgs:
+        errors.append(f'homepage: SVG/illustrations interdits — copier la template photo {svg_home_imgs}')
     repeated_home_imgs = {src: home_img_srcs.count(src) for src in unique_home_imgs if home_img_srcs.count(src) > 2}
     if repeated_home_imgs:
-        errors.append(f'homepage: image répétée trop souvent {repeated_home_imgs}')
+        errors.append(f'homepage: photo répétée trop souvent {repeated_home_imgs}')
     human_urgency_terms=['compteur qui tourne','dégât des eaux','couper l’arrivée d’eau','appeler']
     missing_urgency=[term for term in human_urgency_terms if term not in home]
     if missing_urgency: errors.append(f'homepage: urgence humaine insuffisante {missing_urgency}')

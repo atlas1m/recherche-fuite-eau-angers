@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="576" viewBox="0 0 1024 576" role="img" aria-labelledby="t d">
-<title id="t">Assurance</title><desc id="d">Photos, rapport et dossier dégât des eaux</desc>
-<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffaf1"/><stop offset="1" stop-color="#e7f7fb"/></linearGradient><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer></filter></defs>
-<rect width="1024" height="576" fill="url(#bg)"/><rect width="1024" height="576" fill="#000" filter="url(#grain)" opacity=".35"/>
-<circle cx="842" cy="82" r="150" fill="#2f6f73" opacity=".16"/><circle cx="180" cy="505" r="170" fill="#2f6f73" opacity=".12"/>
-<rect x="230" y="105" width="300" height="380" rx="22" fill="#fff" stroke="#243447" stroke-width="14"/><path d="M280 188h190M280 250h160M280 312h135" stroke="#243447" stroke-width="16" stroke-linecap="round"/><rect x="610" y="135" width="240" height="305" rx="26" fill="#f4efe7" stroke="#243447" stroke-width="14"/><path d="M650 255l50 55 102-123" fill="none" stroke="#0b7f94" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/><path d="M315 410l58-52 48 40 65-66" fill="none" stroke="#74b7c3" stroke-width="16" stroke-linecap="round"/>
-<rect x="282" y="46" width="460" height="70" rx="35" fill="#2f6f73"/><text x="512" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#fff">Assurance</text>
-</svg>

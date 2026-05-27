@@ -235,25 +235,25 @@ SERVICE_ROWS = [
     ('/recherche-fuite-urgence-angers/', 'Urgence fuite : quoi faire', 'En urgence, le bon réflexe n’est pas de multiplier les appels au hasard. Il faut couper l’eau si possible, éviter les zones électriques humides, prévenir voisin ou syndic si nécessaire, puis décrire clairement ce qui évolue. L’appel sert à trier : danger immédiat, dégât actif, dossier assurance ou diagnostic pouvant être planifié.'),
 ]
 
-# Template lock-in: the AutoglassNOLA-inspired lead-gen template must keep both
-# editorial depth and visual variety. Do not reuse the same asset for every row:
-# each row below maps to a distinct situation image, and the audit enforces this.
+# Template lock-in: copy the reference lead-gen template media language: photo blocks,
+# not invented vector/illustration cards. Keep editorial depth and visual variety;
+# each row below maps to a distinct photographic situation asset, and the audit enforces this.
 TEMPLATE_WORD_TARGET = (900, 1400)
 IMAGE_LIBRARY = {
-    'hero': ('/assets/images/fuite-hero-diagnostic.svg', 'Technicien préparant un diagnostic de recherche de fuite avec formulaire de demande'),
-    'visual': ('/assets/images/fuite-canalisation-controle.svg', 'Contrôle visuel d’une canalisation avec humidité localisée'),
+    'hero': ('/assets/images/fuite-hero-diagnostic.jpg', 'Technicien préparant un diagnostic de recherche de fuite en salle de bain'),
+    'visual': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle photographique d’un raccord de canalisation'),
     'service': [
-        ('/assets/images/fuite-humidite-mur.svg', 'Mur humide contrôlé avec humidimètre'),
-        ('/assets/images/fuite-camera-thermique.svg', 'Recherche de fuite non destructive avec caméra thermique'),
-        ('/assets/images/fuite-compteur-eau.svg', 'Compteur d’eau surveillé pour fuite après compteur'),
-        ('/assets/images/fuite-degat-assurance.svg', 'Dossier dégât des eaux avec photos et assurance'),
-        ('/assets/images/fuite-devis-prix.svg', 'Préparation d’un devis de recherche de fuite'),
-        ('/assets/images/fuite-urgence-coupure.svg', 'Coupure d’eau en urgence avant diagnostic'),
+        ('/assets/images/fuite-humidite-mur.jpg', 'Mur humide avec traces de dégât des eaux'),
+        ('/assets/images/fuite-camera-thermique.jpg', 'Appareil de diagnostic utilisé près d’une canalisation'),
+        ('/assets/images/fuite-compteur-eau.jpg', 'Compteur d’eau contrôlé pour détecter une surconsommation'),
+        ('/assets/images/fuite-degat-assurance.jpg', 'Mur abîmé par l’humidité avant dossier assurance'),
+        ('/assets/images/fuite-devis-prix.jpg', 'Éléments de chiffrage et matériel de plomberie'),
+        ('/assets/images/fuite-urgence-coupure.jpg', 'Fuite active sur siphon avant coupure ou réparation'),
     ],
     'thumbs': [
-        ('/assets/images/fuite-controle-humidite.svg', 'Contrôle humidité avant orientation'),
-        ('/assets/images/fuite-inspection-canalisation.svg', 'Inspection de canalisation accessible'),
-        ('/assets/images/fuite-diagnostic-non-destructif.svg', 'Diagnostic non destructif avec instruments'),
+        ('/assets/images/fuite-controle-humidite.jpg', 'Contrôle visuel de traces d’humidité'),
+        ('/assets/images/fuite-inspection-canalisation.jpg', 'Inspection de canalisation en salle de bain'),
+        ('/assets/images/fuite-diagnostic-non-destructif.jpg', 'Diagnostic avec outil de plomberie en intérieur'),
     ],
 }
 
