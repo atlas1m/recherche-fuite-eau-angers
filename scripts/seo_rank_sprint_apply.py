@@ -209,12 +209,13 @@ sitemap='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitem
 print(f'Wrote {len(PAGES)} P0 pages, {len(NEW_PAGES)} new topical pages, homepage/methodologie, sitemap with {len(slugs)} URLs.')
 
 # -----------------------------------------------------------------------------
-# Autoglass-style structural overlay
-# Maxime requested to copy the reference site's structure exactly enough to stop
-# drifting into decorative AI layouts. This keeps the Angers content and white-hat
-# constraints, but uses the reference IA: narrow phone/nav header, immediate two-
-# column lead-capture block, intro text, alternating service rows, FAQ links,
-# service-area block, secondary contact/image row, proof block, and compact footer.
+# AutoglassNOLA structural overlay
+# Reference site: https://www.autoglassnola.com/
+# Maxime requested this exact local lead-gen structure, not a generic decorative
+# landing page: narrow phone/nav header, immediate two-column hero with left
+# service heading + worker image + call button and right quote form, H1/intro
+# block below, alternating image/text service rows, FAQ links, service-area block,
+# secondary contact/image row, proof/transparency block, and compact footer.
 # -----------------------------------------------------------------------------
 
 REFERENCE_NAV = [
