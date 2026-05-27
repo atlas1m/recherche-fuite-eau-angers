@@ -399,7 +399,7 @@ def _nav_html():
     return f'''<header class="site-header"><div class="topline wrap"><a class="phone-wordmark" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><nav aria-label="Navigation principale"><ul>{items}</ul></nav></div></header>'''
 
 def _quote_form():
-    return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="6"></textarea></label><a class="submit-like" href="tel:{PHONE_TEL}">ENVOYER</a></form></aside>'''
+    return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="6"></textarea></label><a class="form-button" href="tel:{PHONE_TEL}">ENVOYER</a></form></aside>'''
 
 def _lead_capture(heading, slug=''):
     return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2>{_page_img(slug, loading='eager')}<a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
