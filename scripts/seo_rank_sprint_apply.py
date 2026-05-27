@@ -149,14 +149,20 @@ def render(slug, cfg):
         body += '<section class="visual-seo" aria-label="Photo de recherche de fuite"><div class="wrap"><figure class="seo-figure"><img src="/assets/images/artisan-recherche-fuite.png" alt="Artisan effectuant une recherche de fuite d’eau sur une canalisation" width="1024" height="576" loading="eager" decoding="async"><figcaption>Recherche de fuite sur canalisation : contrôle visuel, zone humide et matériel de diagnostic.</figcaption></figure></div></section>'
     for i,(h, bullets) in enumerate(sections,1):
         cls='section alt' if i%2 else 'section'
-        body += f'<section class="{cls}" id="{i}"><div class="wrap"><h2>{html.escape(h)}</h2><div class="grid">'
-        for b in bullets:
-            body += f'<article class="card"><p>{html.escape(b)}</p></article>'
-        body += '</div></div></section>'
-    body += '<section class="section"><div class="wrap"><h2>Questions fréquentes</h2><div class="grid">'
+        is_ordered_action = h.startswith('À traiter') or 'Actions utiles' in h
+        list_tag = 'ol' if is_ordered_action else 'ul'
+        list_class = 'grid action-steps' if is_ordered_action else 'grid list-cards'
+        body += f'<section class="{cls}" id="{i}"><div class="wrap"><h2>{html.escape(h)}</h2><{list_tag} class="{list_class}">'
+        for idx,b in enumerate(bullets,1):
+            if is_ordered_action:
+                body += f'<li class="card"><span class="step-num" aria-hidden="true">{idx}</span><p>{html.escape(b)}</p></li>'
+            else:
+                body += f'<li class="card"><p>{html.escape(b)}</p></li>'
+        body += f'</{list_tag}></div></section>'
+    body += '<section class="section"><div class="wrap"><h2>Questions fréquentes</h2><ul class="grid list-cards faq-list">'
     for q,a in faq:
-        body += f'<article class="card"><h3>{html.escape(q)}</h3><p>{html.escape(a)}</p></article>'
-    body += '</div></div></section>' + related(slug)
+        body += f'<li class="card"><h3>{html.escape(q)}</h3><p>{html.escape(a)}</p></li>'
+    body += '</ul></div></section>' + related(slug)
     body += f'<section class="section"><div class="wrap"><div class="card"><h2>Préparer l’appel</h2><p>Pour gagner du temps, préparez la ville/quartier, le type de fuite, l’urgence, votre statut et le besoin éventuel d’un rapport assurance.</p><p><a class="btn" href="tel:{PHONE_TEL}">Appeler le {PHONE_DISPLAY}</a> <a class="btn ghost" href="/contact/">Voir les informations à préparer</a></p><p class="note">Le numéro affiché sert à qualifier la demande avant toute mise en relation.</p></div></div></section></main>{FOOT}</body></html>\n'
     return head+body
 
