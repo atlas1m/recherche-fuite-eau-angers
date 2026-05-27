@@ -235,6 +235,34 @@ SERVICE_ROWS = [
     ('/recherche-fuite-urgence-angers/', 'Urgence fuite : quoi faire', 'En urgence, le bon réflexe n’est pas de multiplier les appels au hasard. Il faut couper l’eau si possible, éviter les zones électriques humides, prévenir voisin ou syndic si nécessaire, puis décrire clairement ce qui évolue. L’appel sert à trier : danger immédiat, dégât actif, dossier assurance ou diagnostic pouvant être planifié.'),
 ]
 
+# Template lock-in: the AutoglassNOLA-inspired lead-gen template must keep both
+# editorial depth and visual variety. Do not reuse the same asset for every row:
+# each row below maps to a distinct situation image, and the audit enforces this.
+TEMPLATE_WORD_TARGET = (900, 1400)
+IMAGE_LIBRARY = {
+    'hero': ('/assets/images/fuite-hero-diagnostic.svg', 'Technicien préparant un diagnostic de recherche de fuite avec formulaire de demande'),
+    'visual': ('/assets/images/fuite-canalisation-controle.svg', 'Contrôle visuel d’une canalisation avec humidité localisée'),
+    'service': [
+        ('/assets/images/fuite-humidite-mur.svg', 'Mur humide contrôlé avec humidimètre'),
+        ('/assets/images/fuite-camera-thermique.svg', 'Recherche de fuite non destructive avec caméra thermique'),
+        ('/assets/images/fuite-compteur-eau.svg', 'Compteur d’eau surveillé pour fuite après compteur'),
+        ('/assets/images/fuite-degat-assurance.svg', 'Dossier dégât des eaux avec photos et assurance'),
+        ('/assets/images/fuite-devis-prix.svg', 'Préparation d’un devis de recherche de fuite'),
+        ('/assets/images/fuite-urgence-coupure.svg', 'Coupure d’eau en urgence avant diagnostic'),
+    ],
+    'thumbs': [
+        ('/assets/images/fuite-controle-humidite.svg', 'Contrôle humidité avant orientation'),
+        ('/assets/images/fuite-inspection-canalisation.svg', 'Inspection de canalisation accessible'),
+        ('/assets/images/fuite-diagnostic-non-destructif.svg', 'Diagnostic non destructif avec instruments'),
+    ],
+}
+
+def _img(key, *, index=0, class_name='', loading='lazy', width=1024, height=576):
+    value = IMAGE_LIBRARY[key]
+    src, alt = value[index % len(value)] if isinstance(value, list) else value
+    cls = f' class="{class_name}"' if class_name else ''
+    return f'<img src="{src}" alt="{html.escape(alt)}" width="{width}" height="{height}" loading="{loading}" decoding="async"{cls}>'
+
 AREA_LINKS = [
     ('/recherche-fuite-eau-angers/', 'Angers'),
     ('/recherche-fuite-avrille/', 'Avrillé'),
@@ -327,7 +355,7 @@ def _quote_form():
     return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs — formulaire non connecté</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="5"></textarea></label><a class="submit-like" href="tel:{PHONE_TEL}">Appeler / qualifier</a></form></aside>'''
 
 def _lead_capture(heading):
-    return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2><img src="/assets/images/artisan-recherche-fuite.png" alt="Recherche de fuite d’eau avec matériel de diagnostic" width="1024" height="576"><a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
+    return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2>{_img('hero', loading='eager')}<a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
 
 def _intro(cfg):
     return f'''<section class="intro wrap"><h1>{html.escape(cfg['h1'])}</h1><p>{html.escape(cfg['lead'])}</p><p><strong>Avant l’appel</strong><br>Couper l’arrivée d’eau si elle est accessible, éviter les zones électriques humides, photographier les traces et noter le relevé du compteur. Si le problème touche un voisin, une copropriété ou un logement loué, gardez aussi une trace écrite des personnes prévenues.</p><p><strong>À propos</strong><br>Ce site sert à transformer une situation floue — compteur qui tourne, tache au plafond, mur humide, dégât des eaux — en demande claire. Il ne remplace pas le diagnostic d’un professionnel : il aide à préparer les informations, à distinguer urgence réelle et demande planifiable, puis à orienter la conversation vers les bonnes questions.</p><p><strong>Services</strong><br>Les pages ci-dessous reprennent les cas les plus fréquents : recherche non destructive, assurance, fuite après compteur, prix, urgence, copropriété et secteurs autour d’Angers. Chaque rubrique vise un angle distinct pour éviter la répétition mécanique : symptôme, méthode, dossier administratif, coût, sécurité ou zone couverte.</p><p><strong>Cadre local</strong><br>Les coordonnées locales, retours clients, délais, tarifs et disponibilités sont publiés uniquement après validation. Cette prudence protège le visiteur : une demande de fuite d’eau dépend toujours du bâtiment, de l’accès, du réseau concerné, de l’assurance et du niveau de dommage déjà visible.</p></section>'''
@@ -335,7 +363,7 @@ def _intro(cfg):
 def _service_rows():
     out = ['<section class="service-rows wrap" aria-label="Services principaux">']
     for i, (href, title, text) in enumerate(SERVICE_ROWS):
-        img = '<div class="service-img"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic humidité et canalisation" loading="lazy"></div>'
+        img = f'<div class="service-img">{_img("service", index=i, loading="eager")}</div>'
         copy = f'<div class="service-copy"><h2>{html.escape(title)}</h2><p>{html.escape(text)}</p><p><a href="{href}">Lire la page</a></p></div>'
         out.append(f'<article class="service-row">{img + copy if i % 2 == 0 else copy + img}</article>')
     out.append('</section>')
@@ -353,7 +381,8 @@ def _areas():
     return f'<section class="areas"><div class="wrap"><h2>Recherche de fuite autour d’Angers</h2><p>Le besoin ne se limite pas au centre-ville : un dégât des eaux peut concerner une maison en périphérie, un appartement en copropriété, un local professionnel ou un logement géré à distance. Les pages de secteur servent à cadrer la commune, les contraintes d’accès et le contexte de déplacement avant qualification.</p><ul>{items}</ul></div></section>'
 
 def _contact_strip():
-    return f'''<section class="contact-strip wrap"><h2>Contactez-nous pour qualifier la situation</h2><p>Préparez le quartier, le type de bien, le symptôme principal, le niveau d’urgence et le contexte assurance ou syndic. Un bon appel commence par des faits simples : où apparaît l’eau, depuis quand, à quel moment le compteur tourne, quelles pièces sont touchées et qui doit être informé. Ces éléments permettent d’éviter une demande trop vague et d’orienter vers la bonne page, la bonne méthode ou le bon interlocuteur.</p><div class="thumb-row"><img src="/assets/images/artisan-recherche-fuite.png" alt="Contrôle humidité" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Inspection canalisation" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic non destructif" loading="lazy"></div></section>'''
+    thumbs = ''.join(_img('thumbs', index=i, loading='eager') for i in range(len(IMAGE_LIBRARY['thumbs'])))
+    return f'''<section class="contact-strip wrap"><h2>Contactez-nous pour qualifier la situation</h2><p>Préparez le quartier, le type de bien, le symptôme principal, le niveau d’urgence et le contexte assurance ou syndic. Un bon appel commence par des faits simples : où apparaît l’eau, depuis quand, à quel moment le compteur tourne, quelles pièces sont touchées et qui doit être informé. Ces éléments permettent d’éviter une demande trop vague et d’orienter vers la bonne page, la bonne méthode ou le bon interlocuteur.</p><div class="thumb-row">{thumbs}</div></section>'''
 
 def _proof_block():
     return f'''<section class="proof"><div class="wrap"><h2>Cadre de qualification avant mise en relation</h2><div class="proof-cols"><p>Retours clients : affichage uniquement après collecte et source vérifiable. Tant qu’un retour n’est pas sourcé, il ne sert pas de preuve publique et ne doit pas orienter la décision du visiteur.</p><p>Coordonnées locales : publication uniquement après validation d’une implantation ou d’un partenaire. Le site privilégie une information utile et vérifiable plutôt qu’une identité commerciale non confirmée.</p><p>Tarifs et disponibilité : confirmation nécessaire selon accès, méthode, urgence et contexte assurance. La qualification sert justement à séparer une demande simple, un dossier copropriété, une fuite après compteur ou un dégât actif.</p></div><p><a class="call-now dark" href="tel:{PHONE_TEL}">APPELER</a></p></div></section>'''

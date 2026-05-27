@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="576" viewBox="0 0 1024 576" role="img" aria-labelledby="t d">
+<title id="t">Diagnostic</title><desc id="d">Instruments et limites à confirmer</desc>
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffaf1"/><stop offset="1" stop-color="#e7f7fb"/></linearGradient><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer></filter></defs>
+<rect width="1024" height="576" fill="url(#bg)"/><rect width="1024" height="576" fill="#000" filter="url(#grain)" opacity=".35"/>
+<circle cx="842" cy="82" r="150" fill="#243447" opacity=".16"/><circle cx="180" cy="505" r="170" fill="#243447" opacity=".12"/>
+<rect x="230" y="145" width="290" height="260" rx="28" fill="#fff" stroke="#243447" stroke-width="14"/><circle cx="355" cy="270" r="62" fill="#e7f7fb" stroke="#0b7f94" stroke-width="12"/><path d="M355 232v40l28 24" stroke="#243447" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M645 170l130 130M775 170L645 300" stroke="#243447" stroke-width="28" stroke-linecap="round"/><circle cx="710" cy="392" r="54" fill="#f4c542" stroke="#243447" stroke-width="14"/>
+<rect x="282" y="46" width="460" height="70" rx="35" fill="#243447"/><text x="512" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#fff">Diagnostic</text>
+</svg>

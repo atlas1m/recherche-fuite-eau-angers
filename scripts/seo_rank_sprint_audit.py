@@ -16,6 +16,11 @@ FORBIDDEN_PATTERNS = [
 ]
 
 def strip_tags(x): return re.sub(r'<[^>]*>', ' ', x or '').strip()
+def visible_word_count(html):
+    html = re.sub(r'<script[^>]*>.*?</script>', ' ', html, flags=re.I|re.S)
+    html = re.sub(r'<style[^>]*>.*?</style>', ' ', html, flags=re.I|re.S)
+    text = re.sub(r'<[^>]*>', ' ', html)
+    return len(re.findall(r"[\wÀ-ÖØ-öø-ÿ’'-]+", text))
 def attr(html, pattern):
     m=re.search(pattern, html, re.I|re.S)
     return m.group(1).strip() if m else ''
@@ -116,6 +121,18 @@ def audit():
         if order_bad: errors.append(f'homepage: ordre template Autoglass incorrect {order_bad}')
     service_rows=len(re.findall(r'class=["\']service-row\b', home))
     if service_rows < 6: errors.append(f'homepage: service rows insuffisantes pour template Autoglass ({service_rows})')
+    home_words = visible_word_count(home)
+    if home_words < 900:
+        errors.append(f'homepage: densité éditoriale template insuffisante ({home_words} mots, minimum 900)')
+    if home_words > 1400:
+        errors.append(f'homepage: densité éditoriale template trop lourde ({home_words} mots, maximum 1400)')
+    home_img_srcs = re.findall(r'<img\b[^>]*\bsrc=["\']([^"\']+)["\']', home, re.I|re.S)
+    unique_home_imgs = sorted(set(home_img_srcs))
+    if len(unique_home_imgs) < 8:
+        errors.append(f'homepage: variété visuelle insuffisante ({len(unique_home_imgs)} images uniques, minimum 8)')
+    repeated_home_imgs = {src: home_img_srcs.count(src) for src in unique_home_imgs if home_img_srcs.count(src) > 2}
+    if repeated_home_imgs:
+        errors.append(f'homepage: image répétée trop souvent {repeated_home_imgs}')
     human_urgency_terms=['compteur qui tourne','dégât des eaux','couper l’arrivée d’eau','appeler']
     missing_urgency=[term for term in human_urgency_terms if term not in home]
     if missing_urgency: errors.append(f'homepage: urgence humaine insuffisante {missing_urgency}')
@@ -126,12 +143,12 @@ def audit():
     if re.search(r'recherche fuite eau angers|fuite eau angers', headings): errors.append('homepage: keyword stuffing exact dans les headings')
     robots=(SITE/'robots.txt').read_text(encoding='utf-8') if (SITE/'robots.txt').exists() else ''
     if 'Sitemap:' not in robots: errors.append('robots.txt: Sitemap absent')
-    return {'html_count':len(rows),'rows':rows,'errors':errors,'duplicate_title_groups':duplicate_title_groups,'duplicate_meta_groups':duplicate_meta_groups,'sitemap_url_count':len(sitemap_urls),'sitemap_urls':sitemap_urls,'robots_has_sitemap':'Sitemap:' in robots}
+    return {'html_count':len(rows),'rows':rows,'errors':errors,'duplicate_title_groups':duplicate_title_groups,'duplicate_meta_groups':duplicate_meta_groups,'sitemap_url_count':len(sitemap_urls),'sitemap_urls':sitemap_urls,'robots_has_sitemap':'Sitemap:' in robots,'homepage_words':home_words,'homepage_unique_images':len(unique_home_imgs)}
 if __name__ == '__main__':
     result=audit()
     out=json.dumps(result,ensure_ascii=False,indent=2)
     if '--json' in sys.argv: print(out)
     else:
-        print(f"HTML: {result['html_count']} | sitemap URLs: {result['sitemap_url_count']} | errors: {len(result['errors'])}")
+        print(f"HTML: {result['html_count']} | sitemap URLs: {result['sitemap_url_count']} | homepage words: {result['homepage_words']} | homepage unique images: {result['homepage_unique_images']} | errors: {len(result['errors'])}")
         for e in result['errors'][:80]: print('-', e)
     if result['errors']: sys.exit(1)

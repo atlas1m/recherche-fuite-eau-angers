@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="576" viewBox="0 0 1024 576" role="img" aria-labelledby="t d">
+<title id="t">Urgence</title><desc id="d">Couper l’eau si la situation évolue</desc>
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fffaf1"/><stop offset="1" stop-color="#e7f7fb"/></linearGradient><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer></filter></defs>
+<rect width="1024" height="576" fill="url(#bg)"/><rect width="1024" height="576" fill="#000" filter="url(#grain)" opacity=".35"/>
+<circle cx="842" cy="82" r="150" fill="#b84a3a" opacity=".16"/><circle cx="180" cy="505" r="170" fill="#b84a3a" opacity=".12"/>
+<path d="M220 300h600" stroke="#243447" stroke-width="34" stroke-linecap="round"/><circle cx="510" cy="300" r="95" fill="#fff" stroke="#243447" stroke-width="16"/><path d="M435 225l150 150M585 225L435 375" stroke="#eb6a4a" stroke-width="24" stroke-linecap="round"/><path d="M510 120v85M435 120h150" stroke="#243447" stroke-width="20" stroke-linecap="round"/><path d="M300 355c-38 43-4 92 40 92s78-49 40-92l-40-54z" fill="#74b7c3" stroke="#243447" stroke-width="10"/>
+<rect x="282" y="46" width="460" height="70" rx="35" fill="#b84a3a"/><text x="512" y="92" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" font-weight="700" fill="#fff">Urgence</text>
+</svg>
