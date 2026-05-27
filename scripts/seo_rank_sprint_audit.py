@@ -141,6 +141,24 @@ def audit():
     repeated_home_imgs = {src: home_img_srcs.count(src) for src in unique_home_imgs if home_img_srcs.count(src) > 2}
     if repeated_home_imgs:
         errors.append(f'homepage: photo répétée trop souvent {repeated_home_imgs}')
+    # Above-the-fold guard: key navigation pages must not show the same hero/header photo.
+    hero_pages=['index.html','services/index.html','about/index.html','locations/index.html','contact/index.html']
+    hero_srcs={}
+    for rel in hero_pages:
+        f=SITE/rel
+        if not f.exists():
+            errors.append(f'{rel}: page clé absente pour contrôle hero')
+            continue
+        page_html=f.read_text(encoding='utf-8', errors='ignore')
+        imgs=re.findall(r'<img\b[^>]*\bsrc=["\']([^"\']+)["\']', page_html, re.I|re.S)
+        if not imgs:
+            errors.append(f'{rel}: hero/header photo absente')
+            continue
+        hero_srcs[rel]=imgs[0]
+    repeated_heroes={src:[rel for rel,s in hero_srcs.items() if s==src] for src in set(hero_srcs.values())}
+    repeated_heroes={src:rels for src,rels in repeated_heroes.items() if len(rels)>1}
+    if repeated_heroes:
+        errors.append(f'pages clés: même photo hero/header réutilisée {repeated_heroes}')
     # Final template guard: strategic canonical pages need a deterministic keyword photo slot.
     exempt_keyword_slots={'/','/about/','/services/','/mentions-legales/','/politique-confidentialite/','/methodologie/'}
     for url in sitemap_urls:

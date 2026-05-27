@@ -261,9 +261,11 @@ IMAGE_LIBRARY = {
 # Provenance and prompt notes live in the Hermes Obsidian vault only; repo contains runtime assets.
 IMAGE_BY_SLUG = {
     '': IMAGE_LIBRARY['hero'],
-    'services': IMAGE_LIBRARY['hero'],
-    'about': ('/assets/images/fuite-hero-diagnostic.jpg', 'Technicien préparant un diagnostic de recherche de fuite en salle de bain'),
+    # Top-level pages must not reuse the same hero: screenshots expose repetition immediately.
+    'services': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle photographique d’un raccord de canalisation'),
+    'about': ('/assets/images/fuite-diagnostic-non-destructif.jpg', 'Technicien en diagnostic non destructif dans un logement'),
     'locations': ('/assets/images/carte-secteur-angers.jpg', 'Carte indicative du secteur d’Angers et communes proches'),
+    'contact': ('/assets/images/fuite-coupure-vanne.jpg', 'Coupure d’arrivée d’eau avant qualification d’une fuite'),
     'recherche-fuite-eau-angers': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite avec humidimètre sur mur en plâtre'),
     'recherche-fuite-non-destructive-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Recherche de fuite non destructive avec caméra thermique'),
     'prix-recherche-fuite-eau-angers': ('/assets/images/fuite-devis-prix.jpg', 'Éléments de devis pour recherche de fuite'),
@@ -456,7 +458,7 @@ def _about_footer():
 
 def _about_page(cfg):
     about_text = '''<p>Une fuite d’eau, une tache au plafond ou un compteur qui tourne sans consommation doit être décrite avec précision avant de choisir la bonne méthode. Recherche Fuite Eau Angers reprend cette logique : partir du symptôme visible, cadrer le type de logement, noter le contexte assurance ou syndic, puis préparer un appel clair.</p><p>Le parcours est volontairement simple. Le visiteur peut appeler, indiquer la pièce concernée, l’évolution des traces, le statut du logement et le niveau d’urgence. La qualification évite de traiter toutes les situations comme identiques : une fuite après compteur, une humidité murale, un dégât des eaux en copropriété ou une recherche non destructive ne demandent pas les mêmes informations.</p><p>Les pages du site servent aussi de repères avant l’appel : méthodes possibles, limites d’une recherche sans casse, rôle d’un rapport pour l’assurance, facteurs de prix et communes proches. Les délais, tarifs, retours clients et coordonnées opérationnelles ne sont affichés qu’après validation, afin de ne pas transformer une page d’orientation en identité métier non vérifiée.</p>'''
-    return _nav_html() + f'''<main class="about-template"><section class="about-page wrap"><h1>{html.escape(cfg['h1'])}</h1><div class="about-main"><article class="about-copy">{_img('hero', class_name='about-main-img', loading='eager')}<div class="about-text">{about_text}</div></article>{_quote_form()}</div></section></main>''' + _about_footer()
+    return _nav_html() + f'''<main class="about-template"><section class="about-page wrap"><h1>{html.escape(cfg['h1'])}</h1><div class="about-main"><article class="about-copy">{_page_img('about', class_name='about-main-img', loading='eager')}<div class="about-text">{about_text}</div></article>{_quote_form()}</div></section></main>''' + _about_footer()
 
 def render_reference(slug, cfg):
     url = BASE + ('/' if slug == '' else f'/{slug}/')
