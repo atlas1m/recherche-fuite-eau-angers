@@ -115,7 +115,7 @@ NEW_PAGES = {
 
 def jsonld_for(slug, title, desc, faq):
     url = BASE + ('/' if slug == '' else f'/{slug}/')
-    graph=[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":"Recherche Fuite Eau Angers","inLanguage":"fr-FR","description":"Service indépendant d’information et de mise en relation pour demandes de recherche de fuite à Angers et alentours."},
+    graph=[{"@type":"WebSite","@id":BASE+"/#website","url":BASE+"/","name":"Angers Détection Fuite","inLanguage":"fr-FR","description":"Service indépendant d’information et de mise en relation pour demandes de recherche de fuite à Angers et alentours."},
            {"@type":"WebPage","@id":url+"#webpage","url":url,"name":title,"description":desc,"isPartOf":{"@id":BASE+"/#website"},"inLanguage":"fr-FR"},
            {"@type":"BreadcrumbList","@id":url+"#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":BASE+"/"},{"@type":"ListItem","position":2,"name":title,"item":url}]},
            {"@type":"Service","@id":url+"#service","name":title,"serviceType":"Information et orientation pour recherche de fuite d’eau","areaServed":{"@type":"City","name":"Angers"},"provider":{"@id":BASE+"/#website"},"description":"Service indépendant d’information et d’orientation, avec qualification préalable."}]
