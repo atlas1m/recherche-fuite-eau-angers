@@ -184,7 +184,7 @@ for slug,data in NEW_PAGES.items():
     (SITE/f'{slug}.html').write_text(content,encoding='utf-8')
 
 # Homepage hub
-home_cfg={"title":"Recherche fuite eau Angers : fuite active, compteur, dégât des eaux", "h1":"Recherche de fuite d’eau à Angers", "meta":"Recherche de fuite d’eau à Angers : appel de qualification pour fuite active, compteur qui tourne, dégât des eaux, méthode, prix et assurance.", "lead":"Si l’eau coule encore, si le compteur tourne sans consommation ou si un voisin est touché, l’objectif est simple : limiter les dégâts, qualifier la situation et joindre le bon interlocuteur.", "sections":[("À traiter en premier", ["Eau qui coule encore : coupez l’arrivée d’eau si elle est accessible.", "Eau proche d’une prise ou d’un tableau : sécurisez la zone et évitez tout contact électrique.", "Voisin, plafond ou copropriété touchés : prévenez la personne concernée et gardez des photos datées.", "Compteur qui tourne sans robinet ouvert : notez l’index et l’heure avant l’appel." ]),("Pourquoi appeler", ["Décrire rapidement le symptôme principal : compteur, mur, plafond, sol, salle de bain, toiture ou réseau enterré.", "Identifier si la demande relève d’une urgence, d’un dossier assurance ou d’un diagnostic planifié.", "Préparer les informations nécessaires avant une éventuelle recherche de fuite non destructive.", "Éviter de perdre du temps avec une méthode ou un interlocuteur inadapté." ]),("Informations à avoir sous la main", ["Adresse ou quartier à Angers, type de logement et statut : propriétaire, locataire, syndic ou gestionnaire.", "Moment d’apparition, évolution de la trace, présence d’eau active ou surconsommation.", "Photos, relevé compteur, échanges avec assurance, propriétaire, voisin ou syndic."] )], "faq":[("Quand faut-il appeler ?","Appelez si la fuite semble active, si le compteur tourne sans consommation, si un dégât des eaux progresse ou si un voisin est concerné."),("Que faire avant l’appel ?","Coupez l’eau si possible, sécurisez la zone humide, prenez des photos et notez les informations utiles : compteur, pièce touchée, statut du logement."),("Est-ce une entreprise de plomberie ?","Non. C’est un service indépendant d’information et d’orientation pour qualifier la demande avant une éventuelle mise en relation.")]}
+home_cfg={"title":"Fuite active à Angers : compteur, plafond, dégât des eaux", "h1":"Recherche de fuite & détection non destructive à Angers", "meta":"Fuite active à Angers : appel de qualification pour compteur qui tourne, plafond touché, dégât des eaux, méthode, prix et assurance.", "lead":"Si l’eau coule encore, si le compteur tourne sans consommation ou si un voisin est touché, l’objectif est simple : limiter les dégâts, qualifier la situation et joindre le bon interlocuteur.", "sections":[("À traiter en premier", ["Eau qui coule encore : coupez l’arrivée d’eau si elle est accessible.", "Eau proche d’une prise ou d’un tableau : sécurisez la zone et évitez tout contact électrique.", "Voisin, plafond ou copropriété touchés : prévenez la personne concernée et gardez des photos datées.", "Compteur qui tourne sans robinet ouvert : notez l’index et l’heure avant l’appel." ]),("Pourquoi appeler", ["Décrire rapidement le symptôme principal : compteur, mur, plafond, sol, salle de bain, toiture ou réseau enterré.", "Identifier si la demande relève d’une urgence, d’un dossier assurance ou d’un diagnostic planifié.", "Préparer les informations nécessaires avant une éventuelle recherche de fuite non destructive.", "Éviter de perdre du temps avec une méthode ou un interlocuteur inadapté." ]),("Informations à avoir sous la main", ["Adresse ou quartier à Angers, type de logement et statut : propriétaire, locataire, syndic ou gestionnaire.", "Moment d’apparition, évolution de la trace, présence d’eau active ou surconsommation.", "Photos, relevé compteur, échanges avec assurance, propriétaire, voisin ou syndic."] )], "faq":[("Quand faut-il appeler ?","Appelez si la fuite semble active, si le compteur tourne sans consommation, si un dégât des eaux progresse ou si un voisin est concerné."),("Que faire avant l’appel ?","Coupez l’eau si possible, sécurisez la zone humide, prenez des photos et notez les informations utiles : compteur, pièce touchée, statut du logement."),("Est-ce une entreprise de plomberie ?","Non. C’est un service indépendant d’information et d’orientation pour qualifier la demande avant une éventuelle mise en relation.")]}
 (SITE/'index.html').write_text(render('', home_cfg).replace(BASE+'//',BASE+'/'),encoding='utf-8')
 
 # Methodologie hub
@@ -226,12 +226,12 @@ REFERENCE_NAV = [
 ]
 
 SERVICE_ROWS = [
-    ('/recherche-fuite-eau-angers/', 'Recherche fuite eau Angers', 'Qualifier les signes visibles, l’urgence, le statut du logement et le besoin éventuel d’un rapport avant d’orienter la demande.'),
-    ('/recherche-fuite-non-destructive-angers/', 'Recherche non destructive', 'Structurer les cas où caméra thermique, gaz traceur, électro-acoustique ou inspection peuvent éviter une casse inutile.'),
+    ('/recherche-fuite-eau-angers/', 'Recherche de fuite à Angers', 'Qualifier les signes visibles, l’urgence, le statut du logement et le besoin éventuel d’un rapport avant d’orienter la demande.'),
+    ('/recherche-fuite-non-destructive-angers/', 'Détection non destructive', 'Structurer les cas où caméra thermique, gaz traceur, électro-acoustique ou inspection peuvent éviter une casse inutile.'),
     ('/fuite-apres-compteur-angers/', 'Fuite après compteur', 'Préparer les relevés d’index, la surconsommation et les éléments utiles avant de demander un diagnostic.'),
-    ('/recherche-fuite-assurance-angers/', 'Assurance et rapport', 'Rassembler photos, déclaration, syndic ou propriétaire, et comprendre ce qu’un rapport peut ou non prouver.'),
-    ('/prix-recherche-fuite-eau-angers/', 'Prix et devis', 'Identifier ce qui influence le devis sans annoncer de tarif non vérifié : accès, méthode, rapport, urgence et réparation.'),
-    ('/recherche-fuite-urgence-angers/', 'Fuite urgente', 'Prioriser sécurité, coupure d’eau, voisin touché et premier tri avant toute promesse de disponibilité.'),
+    ('/degat-des-eaux-angers/', 'Dégât des eaux & assurance', 'Rassembler photos, déclaration, syndic ou propriétaire, et comprendre ce qu’un rapport peut ou non prouver.'),
+    ('/prix-recherche-fuite-eau-angers/', 'Prix d’une recherche de fuite', 'Identifier ce qui influence le devis sans annoncer de tarif non vérifié : accès, méthode, rapport, urgence et réparation.'),
+    ('/recherche-fuite-urgence-angers/', 'Urgence fuite : quoi faire', 'Prioriser sécurité, coupure d’eau, voisin touché et premier tri avant toute promesse de disponibilité.'),
 ]
 
 AREA_LINKS = [
@@ -244,10 +244,10 @@ AREA_LINKS = [
 
 STATIC_AUTOG_PAGES = {
     'services': {
-        'title': 'Services recherche fuite eau Angers : situations et méthodes',
-        'h1': 'Services de recherche de fuite à Angers',
-        'meta': 'Services et situations de recherche de fuite à Angers : fuite active, compteur, assurance, non destructif, prix et zones proches.',
-        'lead': 'Retrouvez les principales situations à qualifier avant une recherche de fuite : symptôme, méthode, assurance, urgence et zone concernée.',
+        'title': 'Services fuite et dégât des eaux Angers : situations et méthodes',
+        'h1': 'Services fuite et dégât des eaux à Angers',
+        'meta': 'Services et situations à Angers : fuite active, compteur, assurance, non destructif, prix et zones proches.',
+        'lead': 'Retrouvez les principales situations à qualifier : symptôme, méthode, assurance, urgence et zone concernée.',
         'sections': [('Services principaux', [label for _, label, _ in SERVICE_ROWS])],
         'faq': []
     },
@@ -334,7 +334,7 @@ def _intro(cfg):
 def _service_rows():
     out = ['<section class="service-rows wrap" aria-label="Services principaux">']
     for i, (href, title, text) in enumerate(SERVICE_ROWS):
-        img = '<div class="service-img"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic de fuite eau Angers" loading="lazy"></div>'
+        img = '<div class="service-img"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic humidité et canalisation" loading="lazy"></div>'
         copy = f'<div class="service-copy"><h2>{html.escape(title)}</h2><p>{html.escape(text)}</p><p><a href="{href}">Lire la page</a></p></div>'
         out.append(f'<article class="service-row">{img + copy if i % 2 == 0 else copy + img}</article>')
     out.append('</section>')
@@ -376,7 +376,7 @@ def render_reference(slug, cfg):
     title = cfg['title']; meta = cfg['meta']
     head = f'''<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><meta name="description" content="{html.escape(meta)}"><link rel="canonical" href="{url}"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(meta)}"><meta property="og:url" content="{url}"><link rel="stylesheet" href="/styles.css"><script type="application/ld+json">{jsonld_for(slug, title, meta, cfg.get('faq') or [])}</script></head><body>'''
     if slug == '':
-        body = _nav_html() + _lead_capture('Recherche Fuite Eau Angers') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+        body = _nav_html() + _lead_capture('Angers Détection Fuite Pros') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('services',):
         body = _nav_html() + _lead_capture('Services recherche de fuite') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('locations',):
