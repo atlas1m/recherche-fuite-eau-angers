@@ -281,11 +281,11 @@ STATIC_AUTOG_PAGES = {
         'faq': []
     },
     'about': {
-        'title': 'À propos : information indépendante recherche fuite Angers',
-        'h1': 'À propos de ce guide indépendant',
-        'meta': 'À propos du service indépendant d’information et d’orientation pour recherche de fuite à Angers.',
-        'lead': 'Ce site organise l’information utile avant une demande de recherche de fuite. Les informations locales, les retours clients, les tarifs et les disponibilités sont publiés uniquement après validation.',
-        'sections': [('Positionnement', ['Information locale structurée.', 'Qualification de la situation avant orientation.', 'Coordonnées, retours clients, tarifs et disponibilités publiés uniquement après validation.'])],
+        'title': 'À propos Recherche Fuite Eau Angers',
+        'h1': 'À propos de Recherche Fuite Eau Angers',
+        'meta': 'À propos de Recherche Fuite Eau Angers : qualification des demandes, symptômes à préparer, secteurs autour d’Angers et appel téléphonique.',
+        'lead': 'Recherche Fuite Eau Angers aide à cadrer une situation de fuite, dégât des eaux ou humidité avant un appel de qualification.',
+        'sections': [],
         'faq': []
     },
     'locations': {
@@ -401,6 +401,13 @@ def _detail_sections(cfg):
 def _footer():
     return f'''<footer class="site-footer"><div class="wrap footer-grid"><div><h2>Accueil</h2><p><a href="/">Accueil</a></p><p><a href="/services/">Services</a></p><p><a href="/about/">À propos</a></p><p><a href="/contact/">Contact</a></p></div><div><h2>Services</h2><p><a href="/recherche-fuite-non-destructive-angers/">Sans casse</a></p><p><a href="/recherche-fuite-assurance-angers/">Assurance</a></p><p><a href="/prix-recherche-fuite-eau-angers/">Prix</a></p></div><div><h2>Contact</h2><p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p><p><a href="/mentions-legales/">Mentions légales</a></p><p><a href="/politique-confidentialite/">Confidentialité</a></p></div></div></footer><a class="sticky-call" href="tel:{PHONE_TEL}">APPELER : {PHONE_DISPLAY}</a>'''
 
+def _about_footer():
+    return f'''<footer class="site-footer about-site-footer"><div class="wrap footer-grid"><div><h2>Accueil</h2><p><a href="/">Accueil</a></p></div><div><h2>Services</h2><p><a href="/services/">Services</a></p></div><div><h2>À propos</h2><p><a href="/about/">À propos</a></p></div><div><h2>Contact</h2><p><a href="/contact/">Contact</a></p></div></div><div class="wrap about-map-contact"><div class="about-map"><img src="/assets/images/carte-secteur-angers.jpg" alt="Carte indicative du secteur d’Angers" loading="lazy"></div><div class="about-contact-card">{_img('thumbs', index=2, class_name='about-contact-img', loading='lazy')}<p><strong>Recherche Fuite Eau Angers</strong></p><p><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></p><p>Secteur : Angers, Avrillé, Trélazé, Les Ponts-de-Cé, Maine-et-Loire — zone et disponibilité à confirmer après qualification.</p><p><a href="/mentions-legales/">Mentions légales</a> | <a href="/politique-confidentialite/">Confidentialité</a></p></div></div><p class="wrap about-disclaimer">Le site partage une demande qualifiée uniquement lorsque les conditions de mise en relation sont validées. Les informations transmises servent à comprendre la situation décrite par le visiteur.</p></footer><a class="sticky-call" href="tel:{PHONE_TEL}">APPELER : {PHONE_DISPLAY}</a>'''
+
+def _about_page(cfg):
+    about_text = '''<p>Une fuite d’eau, une tache au plafond ou un compteur qui tourne sans consommation doit être décrite avec précision avant de choisir la bonne méthode. Recherche Fuite Eau Angers reprend cette logique : partir du symptôme visible, cadrer le type de logement, noter le contexte assurance ou syndic, puis préparer un appel clair.</p><p>Le parcours est volontairement simple. Le visiteur peut appeler, indiquer la pièce concernée, l’évolution des traces, le statut du logement et le niveau d’urgence. La qualification évite de traiter toutes les situations comme identiques : une fuite après compteur, une humidité murale, un dégât des eaux en copropriété ou une recherche non destructive ne demandent pas les mêmes informations.</p><p>Les pages du site servent aussi de repères avant l’appel : méthodes possibles, limites d’une recherche sans casse, rôle d’un rapport pour l’assurance, facteurs de prix et communes proches. Les délais, tarifs, retours clients et coordonnées opérationnelles ne sont affichés qu’après validation, afin de ne pas transformer une page d’orientation en identité métier non vérifiée.</p>'''
+    return _nav_html() + f'''<main class="about-template"><section class="about-page wrap"><h1>{html.escape(cfg['h1'])}</h1><div class="about-main"><article class="about-copy">{_img('hero', class_name='about-main-img', loading='eager')}<div class="about-text">{about_text}</div></article>{_quote_form()}</div></section></main>''' + _about_footer()
+
 def render_reference(slug, cfg):
     url = BASE + ('/' if slug == '' else f'/{slug}/')
     title = cfg['title']; meta = cfg['meta']
@@ -409,6 +416,8 @@ def render_reference(slug, cfg):
         body = _nav_html() + _lead_capture('Angers Détection Fuite Pros') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('services',):
         body = _nav_html() + _lead_capture('Services recherche de fuite') + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+    elif slug in ('about',):
+        body = _about_page(cfg)
     elif slug in ('locations',):
         body = _nav_html() + _lead_capture('Secteurs autour d’Angers') + _intro(cfg) + _areas() + _detail_sections(cfg) + _contact_strip() + _proof_block() + _footer()
     else:
