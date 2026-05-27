@@ -15,7 +15,8 @@ FORBIDDEN_PATTERNS = [
     r'\bOVH\b', r'\bTwilio\b', r'\bRetell\b', r'\bfallback\b',
     # Anti-boulettes: never expose generator/audit/SEO filler language to visitors.
     r'\btemplate\b', r'\bmots-cl[ée]s\b', r'photo\s+associ[ée]e', r'angle\s+pr[ée]cis',
-    r'cette\s+couche', r'r[ée]p[ée]ter\s+m[ée]caniquement'
+    r'cette\s+couche', r'r[ée]p[ée]ter\s+m[ée]caniquement', r'r[ée]p[ée]tition\s+m[ée]canique',
+    r'pr[ée]sence\s+locale\s+non\s+v[ée]rifi[ée]e'
 ]
 
 def strip_tags(x): return re.sub(r'<[^>]*>', ' ', x or '').strip()
