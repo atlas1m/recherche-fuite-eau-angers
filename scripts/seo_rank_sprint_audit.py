@@ -102,12 +102,28 @@ def audit():
     canonical_folder_urls=sorted(set(r['canonical'] for r in rows if r['canonical'] and not r['file'].endswith('.html')))
     missing_sitemap=[u for u in canonical_folder_urls if u not in sitemap_urls]
     if missing_sitemap: errors.append(f'sitemap: URLs canoniques absentes {missing_sitemap[:10]}')
-    if total_images != 1: errors.append(f'images: attendu 1 photo métier unique, trouvé {total_images}')
     home=(SITE/'index.html').read_text(encoding='utf-8', errors='ignore').lower() if (SITE/'index.html').exists() else ''
-    human_urgency_terms=['fuite en cours','compteur qui tourne','dégât des eaux','coupez l’arrivée d’eau','appeler maintenant']
+    autoglass_components=['site-header','lead-capture','quote-box','intro','service-rows','faq-list','areas','contact-strip','proof','site-footer','sticky-call']
+    def class_pos(token):
+        m=re.search(r'class=["\'][^"\']*\b' + re.escape(token) + r'\b', home)
+        return m.start() if m else -1
+    positions={c: class_pos(c) for c in autoglass_components}
+    missing_components=[c for c,p in positions.items() if p < 0]
+    if missing_components: errors.append(f'homepage: composants template Autoglass manquants {missing_components}')
+    ordered_components=['site-header','lead-capture','quote-box','intro','service-rows','faq-list','areas','contact-strip','proof','site-footer']
+    if not missing_components:
+        order_bad=[ordered_components[i]+'>'+ordered_components[i+1] for i in range(len(ordered_components)-1) if positions[ordered_components[i]] > positions[ordered_components[i+1]]]
+        if order_bad: errors.append(f'homepage: ordre template Autoglass incorrect {order_bad}')
+    service_rows=len(re.findall(r'class=["\']service-row\b', home))
+    if service_rows < 6: errors.append(f'homepage: service rows insuffisantes pour template Autoglass ({service_rows})')
+    human_urgency_terms=['compteur qui tourne','dégât des eaux','couper l’arrivée d’eau','appeler']
     missing_urgency=[term for term in human_urgency_terms if term not in home]
     if missing_urgency: errors.append(f'homepage: urgence humaine insuffisante {missing_urgency}')
-    if 'phone-big' not in home: errors.append('homepage: numéro principal visible manquant')
+    phone_signals=['phone-wordmark','call-now','tel:']
+    missing_phone=[term for term in phone_signals if term not in home]
+    if missing_phone: errors.append(f'homepage: CTA téléphone template manquant {missing_phone}')
+    headings=' '.join(strip_tags(x) for x in re.findall(r'<h[1-6][^>]*>(.*?)</h[1-6]>', home, re.I|re.S)).lower()
+    if re.search(r'recherche fuite eau angers|fuite eau angers', headings): errors.append('homepage: keyword stuffing exact dans les headings')
     robots=(SITE/'robots.txt').read_text(encoding='utf-8') if (SITE/'robots.txt').exists() else ''
     if 'Sitemap:' not in robots: errors.append('robots.txt: Sitemap absent')
     return {'html_count':len(rows),'rows':rows,'errors':errors,'duplicate_title_groups':duplicate_title_groups,'duplicate_meta_groups':duplicate_meta_groups,'sitemap_url_count':len(sitemap_urls),'sitemap_urls':sitemap_urls,'robots_has_sitemap':'Sitemap:' in robots}

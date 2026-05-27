@@ -232,7 +232,7 @@ SERVICE_ROWS = [
     ('/fuite-apres-compteur-angers/', 'Fuite après compteur', 'Préparer les relevés d’index, la surconsommation et les éléments utiles avant de demander un diagnostic.'),
     ('/degat-des-eaux-angers/', 'Dégât des eaux & assurance', 'Rassembler photos, déclaration, syndic ou propriétaire, et comprendre ce qu’un rapport peut ou non prouver.'),
     ('/prix-recherche-fuite-eau-angers/', 'Prix d’une recherche de fuite', 'Identifier ce qui influence le devis sans annoncer de tarif non vérifié : accès, méthode, rapport, urgence et réparation.'),
-    ('/recherche-fuite-urgence-angers/', 'Urgence fuite : quoi faire', 'Prioriser sécurité, coupure d’eau, voisin touché et premier tri avant toute promesse de disponibilité.'),
+    ('/recherche-fuite-urgence-angers/', 'Urgence fuite : quoi faire', 'Prioriser sécurité, coupure d’eau, voisin touché et premier tri avant de confirmer une disponibilité.'),
 ]
 
 AREA_LINKS = [
@@ -256,8 +256,8 @@ STATIC_AUTOG_PAGES = {
         'title': 'À propos : information indépendante recherche fuite Angers',
         'h1': 'À propos de ce guide indépendant',
         'meta': 'À propos du service indépendant d’information et d’orientation pour recherche de fuite à Angers.',
-        'lead': 'Ce site organise l’information utile avant une demande de recherche de fuite. Il ne publie pas d’adresse locale, d’avis ou de promesse non vérifiés.',
-        'sections': [('Positionnement', ['Information locale structurée.', 'Qualification de la situation avant orientation.', 'Pas de fausse adresse, pas de faux avis, pas de tarif inventé.'])],
+        'lead': 'Ce site organise l’information utile avant une demande de recherche de fuite. Les informations locales, les retours clients, les tarifs et les disponibilités sont publiés uniquement après validation.',
+        'sections': [('Positionnement', ['Information locale structurée.', 'Qualification de la situation avant orientation.', 'Coordonnées, retours clients, tarifs et disponibilités publiés uniquement après validation.'])],
         'faq': []
     },
     'locations': {
@@ -273,7 +273,7 @@ STATIC_AUTOG_PAGES = {
         'h1': 'Mentions légales',
         'meta': 'Mentions légales du site recherche-fuite-eau-angers.fr.',
         'lead': 'Site indépendant d’information et d’orientation. Les informations opérationnelles doivent être confirmées par un professionnel qualifié.',
-        'sections': [('Transparence', ['Pas une entreprise de plomberie.', 'Pas d’adresse locale affichée sans vérification.', 'Pas d’avis clients affichés sans source.'])],
+        'sections': [('Cadre éditorial', ['Site d’information et d’orientation.', 'Coordonnées locales affichées après vérification.', 'Retours clients affichés uniquement avec source vérifiable.'])],
         'faq': []
     },
     'politique-confidentialite': {
@@ -330,7 +330,7 @@ def _lead_capture(heading):
     return f'''<section class="lead-capture"><div class="wrap split"><div class="lead-media"><h2>{html.escape(heading)}</h2><img src="/assets/images/artisan-recherche-fuite.png" alt="Recherche de fuite d’eau avec matériel de diagnostic" width="1024" height="576"><a class="call-now" href="tel:{PHONE_TEL}">APPELER</a></div>{_quote_form()}</div></section>'''
 
 def _intro(cfg):
-    return f'''<section class="intro wrap"><h1>{html.escape(cfg['h1'])}</h1><p>{html.escape(cfg['lead'])}</p><p><strong>À propos</strong><br>Ce site sert à transformer une situation floue — compteur qui tourne, tache au plafond, mur humide, dégât des eaux — en demande claire. Il garde une position prudente : pas de fausse adresse, pas de faux avis, pas de promesse de délai ou de prix sans qualification.</p><p><strong>Services</strong><br>Les pages ci-dessous reprennent les cas les plus fréquents : recherche non destructive, assurance, fuite après compteur, prix, urgence, copropriété et secteurs autour d’Angers.</p></section>'''
+    return f'''<section class="intro wrap"><h1>{html.escape(cfg['h1'])}</h1><p>{html.escape(cfg['lead'])}</p><p><strong>Avant l’appel</strong><br>Couper l’arrivée d’eau si elle est accessible, éviter les zones électriques humides, photographier les traces et noter le relevé du compteur.</p><p><strong>À propos</strong><br>Ce site sert à transformer une situation floue — compteur qui tourne, tache au plafond, mur humide, dégât des eaux — en demande claire. Les coordonnées locales, retours clients, délais, tarifs et disponibilités sont publiés uniquement après validation.</p><p><strong>Services</strong><br>Les pages ci-dessous reprennent les cas les plus fréquents : recherche non destructive, assurance, fuite après compteur, prix, urgence, copropriété et secteurs autour d’Angers.</p></section>'''
 
 def _service_rows():
     out = ['<section class="service-rows wrap" aria-label="Services principaux">']
@@ -356,7 +356,7 @@ def _contact_strip():
     return f'''<section class="contact-strip wrap"><h2>Contactez-nous pour qualifier la situation</h2><p>Préparez le quartier, le type de bien, le symptôme principal, le niveau d’urgence et le contexte assurance ou syndic.</p><div class="thumb-row"><img src="/assets/images/artisan-recherche-fuite.png" alt="Contrôle humidité" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Inspection canalisation" loading="lazy"><img src="/assets/images/artisan-recherche-fuite.png" alt="Diagnostic non destructif" loading="lazy"></div></section>'''
 
 def _proof_block():
-    return f'''<section class="proof"><div class="wrap"><h2>Transparence avant mise en relation</h2><div class="proof-cols"><p>Pas de faux avis : les preuves client ne seront affichées qu’après collecte vérifiable.</p><p>Pas de fausse adresse : aucune implantation locale n’est publiée sans validation.</p><p>Pas de tarif inventé : prix, disponibilité et prise en charge assurance restent à confirmer.</p></div><p><a class="call-now dark" href="tel:{PHONE_TEL}">APPELER</a></p></div></section>'''
+    return f'''<section class="proof"><div class="wrap"><h2>Cadre de qualification avant mise en relation</h2><div class="proof-cols"><p>Retours clients : affichage uniquement après collecte et source vérifiable.</p><p>Coordonnées locales : publication uniquement après validation d’une implantation ou d’un partenaire.</p><p>Tarifs et disponibilité : confirmation nécessaire selon accès, méthode, urgence et contexte assurance.</p></div><p><a class="call-now dark" href="tel:{PHONE_TEL}">APPELER</a></p></div></section>'''
 
 def _detail_sections(cfg):
     out = ['<section class="detail wrap">']
