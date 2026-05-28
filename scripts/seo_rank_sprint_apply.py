@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, html
+import json, html, re
 
 SITE = Path(__file__).resolve().parents[1]
 BASE = "https://recherche-fuite-eau-angers.fr"
@@ -452,12 +452,23 @@ def _service_rows():
     out.append('</section>')
     return ''.join(out)
 
+def _anchor_id(prefix, text, index):
+    slug = re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')[:54]
+    return f'{prefix}-{index}-{slug or "question"}'
+
+
 def _faq_links(cfg):
-    faq = cfg.get('faq') or home_cfg.get('faq') or []
-    links = [f'<a href="/contact/">{html.escape(q)}</a>' for q, a in faq[:6]]
-    if not links:
+    faq = (cfg.get('faq') or home_cfg.get('faq') or [])[:6]
+    if not faq:
         links = [f'<a href="{href}">{html.escape(label)}</a>' for href, label, _ in SERVICE_ROWS[:6]]
-    return f'''<section class="faq-list wrap"><h2>Questions fréquentes</h2><p>{' &nbsp; '.join(links)}</p></section>'''
+        return f'''<section class="faq-list wrap"><h2>Questions fréquentes</h2><p>{' &nbsp; '.join(links)}</p></section>'''
+    quick_links = []
+    answers = []
+    for i, (q, a) in enumerate(faq, 1):
+        anchor = _anchor_id('faq', q, i)
+        quick_links.append(f'<a href="#{anchor}">{html.escape(q)}</a>')
+        answers.append(f'<article class="faq-answer" id="{anchor}"><h3>{html.escape(q)}</h3><p>{html.escape(a)}</p></article>')
+    return f'''<section class="faq-list wrap"><h2>Questions fréquentes</h2><p class="faq-jump-links">{' &nbsp; '.join(quick_links)}</p><div class="faq-answer-list">{''.join(answers)}</div></section>'''
 
 def _areas():
     cols = ''.join(f'<li><a href="{href}">{html.escape(label)}</a></li>' for href, label in AREA_LINKS)

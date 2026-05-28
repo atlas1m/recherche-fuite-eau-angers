@@ -170,3 +170,13 @@
   .service-detail-main{grid-template-columns:1fr;gap:24px}
   .service-detail-img{height:auto;aspect-ratio:1.5}
 }
+
+/* FAQ links must resolve to the visible answer on the same page, never to contact. */
+.faq-jump-links{display:flex;flex-wrap:wrap;gap:18px 34px;margin:0 0 28px}
+.faq-jump-links a{display:inline;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.faq-answer-list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:4px}
+.faq-answer{border-top:1px solid #000;padding-top:16px}
+.faq-answer h3{font-family:Montserrat,Arial,sans-serif;font-size:18px;line-height:25px;margin:0 0 10px;font-weight:800}
+.faq-answer p{margin:0;color:#222;font-size:15px;line-height:25px}
+.faq-answer:target{outline:2px solid var(--green);outline-offset:8px}
+@media(max-width:900px){.faq-jump-links{display:block}.faq-jump-links a{display:block;margin:0 0 16px}.faq-answer-list{grid-template-columns:1fr}}
