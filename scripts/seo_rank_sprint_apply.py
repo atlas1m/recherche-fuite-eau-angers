@@ -274,7 +274,7 @@ IMAGE_BY_SLUG = {
     # Top-level pages must not reuse the same hero: screenshots expose repetition immediately.
     'services': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle photographique d’un raccord de canalisation'),
     'about': ('/assets/images/fuite-diagnostic-non-destructif.jpg', 'Technicien en diagnostic non destructif dans un logement'),
-    'locations': ('/assets/images/fuite-enterree-jardin.jpg', 'Maison avec zone extérieure humide autour d’Angers'),
+    'locations': ('/assets/images/secteurs-maison-exterieure.jpg', 'Maison et jardin résidentiel autour d’Angers'),
     'contact': ('/assets/images/fuite-humidimetre-platre.jpg', 'Mesure d’humidité avec outil tenu en main avant qualification d’une fuite'),
     'recherche-fuite-eau-angers': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite avec humidimètre sur mur en plâtre'),
     'recherche-fuite-non-destructive-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Recherche de fuite non destructive avec caméra thermique'),
@@ -290,7 +290,7 @@ IMAGE_BY_SLUG = {
     'fuite-sous-evier-angers': ('/assets/images/fuite-sous-evier.jpg', 'Fuite sous évier autour du siphon et des canalisations'),
     'fuite-sous-carrelage-angers': ('/assets/images/fuite-humidite-mur.jpg', 'Humidité en bas de mur près d’un sol carrelé'),
     'fuite-chauffage-angers': ('/assets/images/fuite-chauffage-pression.jpg', 'Contrôle de pression chaudière sur circuit de chauffage'),
-    'recherche-fuite-enterree-angers': ('/assets/images/fuite-enterree-jardin.jpg', 'Zone extérieure humide pouvant indiquer une fuite enterrée'),
+    'recherche-fuite-enterree-angers': ('/assets/images/fuite-compteur-eau.jpg', 'Compteur d’eau contrôlé avant suspicion de fuite enterrée'),
     'fuite-canalisation-angers': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle de raccord de canalisation'),
     'detection-fuite-eau-angers': ('/assets/images/fuite-gaz-traceur.jpg', 'Préparation d’un contrôle par gaz traceur sur canalisation'),
     'recherche-fuite-thermographie-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Thermographie appliquée à une recherche de fuite'),
@@ -299,12 +299,12 @@ IMAGE_BY_SLUG = {
     'recherche-fuite-copropriete-angers': ('/assets/images/fuite-copropriete-couloir.jpg', 'Couloir de copropriété avec trace d’humidité à signaler'),
     'recherche-fuite-syndic-angers': ('/assets/images/fuite-copropriete-couloir.jpg', 'Contexte syndic et copropriété pour dégât des eaux'),
     'recherche-fuite-appartement-angers': ('/assets/images/fuite-plafond-goutte.jpg', 'Fuite en appartement avec trace au plafond'),
-    'recherche-fuite-maison-angers': ('/assets/images/fuite-enterree-jardin.jpg', 'Maison avec zone extérieure humide à contrôler'),
+    'recherche-fuite-maison-angers': ('/assets/images/secteurs-maison-exterieure.jpg', 'Maison avec jardin à contrôler autour d’Angers'),
     'recherche-fuite-urgence-angers': ('/assets/images/fuite-coupure-vanne.jpg', 'Coupure de vanne d’eau en urgence fuite'),
     'recherche-fuite-avrille': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite en logement autour d’Avrillé'),
     'recherche-fuite-trelaze': ('/assets/images/fuite-compteur-releve.jpg', 'Contrôle compteur pour demande autour de Trélazé'),
     'recherche-fuite-les-ponts-de-ce': ('/assets/images/fuite-douche-joint.jpg', 'Contrôle salle de bain pour demande aux Ponts-de-Cé'),
-    'recherche-fuite-maine-et-loire': ('/assets/images/fuite-enterree-jardin.jpg', 'Contexte maison et canalisation extérieure en Maine-et-Loire'),
+    'recherche-fuite-maine-et-loire': ('/assets/images/secteurs-maison-exterieure.jpg', 'Contexte maison et jardin en Maine-et-Loire'),
 }
 
 def _img(key, *, index=0, class_name='', loading='lazy', width=1024, height=576):
