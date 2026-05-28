@@ -29,8 +29,8 @@ for f in html:
         semantic.append((rel, 'expected exactly one H1'))
     if 'Angers Détection Fuite Pros' in text:
         semantic.append((rel, 'invented hero label: Angers Détection Fuite Pros'))
-    if 'ENVOYER</a>' in text and f'href="tel:{PHONE_TEL}"' in text:
-        semantic.append((rel, 'submit-looking form CTA points to tel'))
+    if 'ENVOYER</a>' in text or '<a class="form-button" href="tel:' in text:
+        semantic.append((rel, 'submit-looking or form-button CTA points to tel'))
     if 'l’objectif est simple : limiter les dégâts' in text and 'l’appel doit d’abord permettre de sécuriser' in text:
         semantic.append((rel, 'redundant homepage emergency lead sentence'))
     for match in re.findall(r'<script[^>]+type="application/ld\+json"[^>]*>(.*?)</script>', text, flags=re.S):
