@@ -275,7 +275,7 @@ IMAGE_BY_SLUG = {
     'services': ('/assets/images/fuite-canalisation-controle.jpg', 'Contrôle photographique d’un raccord de canalisation'),
     'about': ('/assets/images/fuite-diagnostic-non-destructif.jpg', 'Technicien en diagnostic non destructif dans un logement'),
     'locations': ('/assets/images/fuite-enterree-jardin.jpg', 'Maison avec zone extérieure humide autour d’Angers'),
-    'contact': ('/assets/images/fuite-coupure-vanne.jpg', 'Coupure d’arrivée d’eau avant qualification d’une fuite'),
+    'contact': ('/assets/images/fuite-humidimetre-platre.jpg', 'Mesure d’humidité avec outil tenu en main avant qualification d’une fuite'),
     'recherche-fuite-eau-angers': ('/assets/images/fuite-humidimetre-platre.jpg', 'Recherche de fuite avec humidimètre sur mur en plâtre'),
     'recherche-fuite-non-destructive-angers': ('/assets/images/fuite-thermographie-mur.jpg', 'Recherche de fuite non destructive avec caméra thermique'),
     'prix-recherche-fuite-eau-angers': ('/assets/images/fuite-devis-prix.jpg', 'Éléments de devis pour recherche de fuite'),
@@ -434,8 +434,14 @@ def _intro_copy(cfg):
 def _intro(cfg):
     return f'''<section class="intro wrap"><h1>{html.escape(cfg["h1"])}</h1>{_intro_copy(cfg)}</section>'''
 
+def _split_detail_shell(slug, cfg, *, main_class='service-detail-layout', intro_html=None, after_html=''):
+    """Single-H1 Autoglass detail shell shared by service, sector and index pages."""
+    copy = intro_html if intro_html is not None else _intro_copy(cfg)
+    return _nav_html() + f'''<main class="{main_class}"><section class="service-detail-page wrap"><h1>{html.escape(cfg["h1"])}</h1><div class="service-detail-main"><article class="service-detail-copy">{_page_img(slug, class_name='service-detail-img', loading='eager')}<div class="service-detail-text">{copy}</div></article>{_quote_form()}</div></section>{after_html}</main>''' + _footer()
+
 def _service_detail_page(slug, cfg):
-    return _nav_html() + f'''<main class="service-detail-layout"><section class="service-detail-page wrap"><h1>{html.escape(cfg["h1"])}</h1><div class="service-detail-main"><article class="service-detail-copy">{_page_img(slug, class_name='service-detail-img', loading='eager')}<div class="service-detail-text">{_intro_copy(cfg)}</div></article>{_quote_form()}</div></section>{_keyword_depth(slug, cfg)}{_detail_sections(cfg)}{_faq_links(cfg)}{_areas()}{_contact_strip()}{_proof_block()}</main>''' + _footer()
+    after = f'''{_keyword_depth(slug, cfg)}{_detail_sections(cfg)}{_faq_links(cfg)}{_areas()}{_contact_strip()}{_proof_block()}'''
+    return _split_detail_shell(slug, cfg, after_html=after)
 
 def _service_rows():
     out = ['<section class="service-rows wrap" aria-label="Services principaux">']
@@ -508,11 +514,13 @@ def render_reference(slug, cfg):
     if slug == '':
         body = _nav_html() + _lead_capture('Angers Détection Fuite Pros', slug) + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
     elif slug in ('services',):
-        body = _nav_html() + _lead_capture('Services recherche de fuite', slug) + _intro(cfg) + _service_rows() + _faq_links(cfg) + _areas() + _contact_strip() + _proof_block() + _footer()
+        after = f'''{_service_rows()}{_faq_links(cfg)}{_areas()}{_contact_strip()}{_proof_block()}'''
+        body = _split_detail_shell(slug, cfg, main_class='services-layout service-detail-layout', after_html=after)
     elif slug in ('about',):
         body = _about_page(cfg)
     elif slug in ('locations',):
-        body = _nav_html() + _lead_capture('Secteurs autour d’Angers', slug) + _intro(cfg) + _areas() + _locations_guidance() + _contact_strip() + _proof_block() + _footer()
+        after = f'''{_areas()}{_locations_guidance()}{_contact_strip()}{_proof_block()}'''
+        body = _split_detail_shell(slug, cfg, main_class='locations-layout service-detail-layout', after_html=after)
     elif slug in ('contact',):
         body = _contact_page(cfg)
     else:
