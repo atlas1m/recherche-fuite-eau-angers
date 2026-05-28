@@ -152,9 +152,21 @@
 .service-detail-text strong{font-weight:800}
 .service-detail-main .quote-box{padding-top:0}
 .service-detail-main .form-button{margin:14px auto 0}
+/* Title hierarchy lock: the first visible title in a page header must not look smaller than the next section title. */
+.lead-media h2{
+  font-family:Montserrat,Arial,sans-serif;
+  font-size:40px;
+  line-height:50px;
+  margin:0 0 40px;
+  font-weight:800;
+  color:#000;
+}
+.static-angers-map{margin:0;width:100%;height:300px;overflow:hidden;border:1px solid #ddd;background:#e6e3d8}
+.static-angers-map img{display:block;width:100%;height:100%;object-fit:cover}
 @media(max-width:900px){
   .service-detail-layout{padding:34px 0 0}
   .service-detail-page h1{font-size:32px;line-height:40px}
+  .lead-media h2{font-size:32px;line-height:40px;margin-bottom:28px}
   .service-detail-main{grid-template-columns:1fr;gap:24px}
   .service-detail-img{height:auto;aspect-ratio:1.5}
 }
