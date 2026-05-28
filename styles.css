@@ -134,3 +134,27 @@
   .site-header .services-dropdown{position:absolute;min-width:260px;max-width:calc(100vw - 40px)}
   .site-header .services-dropdown a{white-space:normal}
 }
+
+/* Autoglass service-detail page structure */
+.service-detail-layout{padding:60px 0 0;background:#fff}
+.service-detail-page h1{
+  font-family:Montserrat,Arial,sans-serif;
+  font-size:40px;
+  line-height:50px;
+  margin:0 0 40px;
+  font-weight:800;
+  color:#000;
+}
+.service-detail-main{display:grid;grid-template-columns:728px 362px;gap:30px;align-items:start}
+.service-detail-copy{min-width:0}
+.service-detail-img{display:block;width:100%;height:430px;object-fit:cover;margin:0 0 30px;border:0}
+.service-detail-text p{font-size:16px;line-height:28px;margin:0 0 30px;color:#000}
+.service-detail-text strong{font-weight:800}
+.service-detail-main .quote-box{padding-top:0}
+.service-detail-main .form-button{margin:14px auto 0}
+@media(max-width:900px){
+  .service-detail-layout{padding:34px 0 0}
+  .service-detail-page h1{font-size:32px;line-height:40px}
+  .service-detail-main{grid-template-columns:1fr;gap:24px}
+  .service-detail-img{height:auto;aspect-ratio:1.5}
+}
