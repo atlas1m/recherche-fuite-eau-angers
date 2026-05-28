@@ -457,9 +457,30 @@ def _service_rows():
     out.append('</section>')
     return ''.join(out)
 
-def _anchor_id(prefix, text, index):
-    slug = re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')[:54]
-    return f'{prefix}-{index}-{slug or "question"}'
+def _faq_target(question, answer):
+    """Return a real destination page for a FAQ question.
+
+    FAQ labels must not be same-page jump links: that creates a fake UX loop and weak
+    internal linking. If no precise topical target exists, the label is rendered as text.
+    """
+    text = f'{question} {answer}'.lower()
+    rules = [
+        (('assurance', 'sinistre', 'contrat', 'rembours'), '/recherche-fuite-assurance-angers/'),
+        (('rapport',), '/rapport-recherche-fuite-assurance-angers/'),
+        (('prix', 'tarif', 'devis', 'coût'), '/prix-recherche-fuite-eau-angers/'),
+        (('non destructive', 'sans casse', 'méthode', 'caméra', 'gaz traceur', 'électro'), '/recherche-fuite-non-destructive-angers/'),
+        (('compteur', 'surconsommation', 'après compteur'), '/fuite-apres-compteur-angers/'),
+        (('copropriété', 'syndic'), '/recherche-fuite-copropriete-angers/'),
+        (('premier', 'sécuriser', 'coupez', 'urgence'), '/recherche-fuite-urgence-angers/'),
+        (('dégât des eaux', 'dommage'), '/degat-des-eaux-angers/'),
+        (('répare', 'réparation', 'remise en état'), '/services/'),
+        (('formulaire', 'données', 'numéro affiché'), '/contact/'),
+        (('entreprise de plomberie', 'service indépendant'), '/about/'),
+    ]
+    for needles, href in rules:
+        if any(needle in text for needle in needles):
+            return href
+    return ''
 
 
 def _faq_links(cfg):
@@ -470,9 +491,12 @@ def _faq_links(cfg):
     quick_links = []
     answers = []
     for i, (q, a) in enumerate(faq, 1):
-        anchor = _anchor_id('faq', q, i)
-        quick_links.append(f'<a href="#{anchor}">{html.escape(q)}</a>')
-        answers.append(f'<article class="faq-answer" id="{anchor}"><h3>{html.escape(q)}</h3><p>{html.escape(a)}</p></article>')
+        href = _faq_target(q, a)
+        if href:
+            quick_links.append(f'<a href="{href}">{html.escape(q)}</a>')
+        else:
+            quick_links.append(f'<span>{html.escape(q)}</span>')
+        answers.append(f'<article class="faq-answer"><h3>{html.escape(q)}</h3><p>{html.escape(a)}</p></article>')
     return f'''<section class="faq-list wrap"><h2>Questions fréquentes</h2><p class="faq-jump-links">{' &nbsp; '.join(quick_links)}</p><div class="faq-answer-list">{''.join(answers)}</div></section>'''
 
 def _areas():

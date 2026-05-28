@@ -29,6 +29,8 @@ for f in html:
         semantic.append((rel, 'expected exactly one H1'))
     if 'Angers Détection Fuite Pros' in text:
         semantic.append((rel, 'invented hero label: Angers Détection Fuite Pros'))
+    if re.search(r'class="faq-jump-links"[\s\S]*?href="#', text):
+        semantic.append((rel, 'FAQ question link points to same-page anchor instead of a real page'))
     if 'ENVOYER</a>' in text or '<a class="form-button" href="tel:' in text:
         semantic.append((rel, 'submit-looking or form-button CTA points to tel'))
     if 'l’objectif est simple : limiter les dégâts' in text and 'l’appel doit d’abord permettre de sécuriser' in text:
