@@ -226,6 +226,16 @@ REFERENCE_NAV = [
     ('/contact/', 'Contact'),
 ]
 
+SERVICE_DROPDOWN = [
+    ('/recherche-fuite-eau-angers/', 'Recherche de fuite à Angers'),
+    ('/recherche-fuite-non-destructive-angers/', 'Détection non destructive'),
+    ('/fuite-apres-compteur-angers/', 'Fuite après compteur'),
+    ('/degat-des-eaux-angers/', 'Dégât des eaux'),
+    ('/prix-recherche-fuite-eau-angers/', 'Prix recherche de fuite'),
+    ('/recherche-fuite-urgence-angers/', 'Urgence fuite'),
+    ('/rapport-recherche-fuite-assurance-angers/', 'Rapport assurance'),
+]
+
 SERVICE_ROWS = [
     ('/recherche-fuite-eau-angers/', 'Recherche de fuite à Angers', 'Une fuite visible n’indique pas toujours son origine. L’objectif est de distinguer ce qui relève d’un écoulement actif, d’une infiltration ancienne, d’un réseau encastré ou d’un dégât déclaré trop vite. Avant toute orientation, la demande doit préciser la pièce touchée, l’évolution des traces, le statut du logement et le besoin éventuel d’un rapport.'),
     ('/recherche-fuite-non-destructive-angers/', 'Détection non destructive', 'Les méthodes dites sans casse servent à réduire les ouvertures inutiles, pas à garantir une localisation magique. Selon le cas, caméra thermique, gaz traceur, écoute électro-acoustique, humidimètre ou inspection vidéo peuvent aider à cibler une zone. Le bon choix dépend du réseau, de l’accès, du matériau et de la cohérence entre symptôme et historique.'),
@@ -395,8 +405,22 @@ def _page_cfg(slug):
 
 
 def _nav_html():
-    items = ''.join(f'<li><a href="{href}">{html.escape(label)}</a></li>' for href, label in REFERENCE_NAV)
-    return f'''<header class="site-header"><div class="topline wrap"><a class="phone-wordmark" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><nav aria-label="Navigation principale"><ul>{items}</ul></nav></div></header>'''
+    service_links = ''.join(
+        f'<li><a href="{href}">{html.escape(label)}</a></li>'
+        for href, label in SERVICE_DROPDOWN
+    )
+    items = []
+    for href, label in REFERENCE_NAV:
+        if href == '/services/':
+            items.append(
+                '<li class="nav-dropdown">'
+                f'<a class="nav-dropdown-toggle" href="{href}" aria-haspopup="true">{html.escape(label)}</a>'
+                f'<ul class="services-dropdown" aria-label="Pages de services">{service_links}</ul>'
+                '</li>'
+            )
+        else:
+            items.append(f'<li><a href="{href}">{html.escape(label)}</a></li>')
+    return f'''<header class="site-header"><div class="topline wrap"><a class="phone-wordmark" href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a><nav aria-label="Navigation principale"><ul>{''.join(items)}</ul></nav></div></header><script>(function(){{var d=document.querySelector('.nav-dropdown');if(!d)return;var t=d.querySelector('.nav-dropdown-toggle');function close(e){{if(!d.contains(e.target))d.classList.remove('is-open')}}t.addEventListener('click',function(e){{if(!d.classList.contains('is-open')){{e.preventDefault();d.classList.add('is-open');t.setAttribute('aria-expanded','true')}}}});document.addEventListener('click',close);document.addEventListener('keydown',function(e){{if(e.key==='Escape'){{d.classList.remove('is-open');t.setAttribute('aria-expanded','false')}}}})}})();</script>'''
 
 def _quote_form():
     return f'''<aside class="quote-box" aria-label="Formulaire de demande"><div class="quote-ribbon">Demande rapide</div><p class="required">* champs indicatifs</p><form><label>Nom *<input name="name" autocomplete="name"></label><label>Téléphone *<input name="phone" autocomplete="tel"></label><label>Email *<input name="email" autocomplete="email"></label><label>Commentaire *<textarea name="comment" rows="6"></textarea></label><a class="form-button" href="tel:{PHONE_TEL}">ENVOYER</a></form></aside>'''
