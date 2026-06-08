@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bgsky)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<g transform="translate(0 330)">
+<path d="M120 -90 a90 90 0 0 0 0 180 H560 a90 90 0 0 0 0 -180 Z" fill="#0a3d62" stroke="#fff" stroke-width="10"></path>
+<ellipse cx="560" cy="0" rx="34" ry="90" fill="#06243a" stroke="#fff" stroke-width="10"></ellipse>
+</g>
+<path d="M740 120 C600 200 560 300 420 330" fill="none" stroke="#f5a623" stroke-width="12" stroke-linecap="round"></path>
+<g transform="translate(420 330)"><circle r="34" fill="#cfe7fb" stroke="#fff" stroke-width="10"></circle><circle r="14" fill="#1f7fc4"></circle><circle cx="-2" cy="-6" r="5" fill="#fff"></circle></g>
+<g transform="translate(700 120)"><rect x="-46" y="-40" width="92" height="80" rx="12" fill="#0a3d62" stroke="#fff" stroke-width="10"></rect><line x1="0" y1="-22" x2="0" y2="22" stroke="#f5a623" stroke-width="8"></line><line x1="-22" y1="0" x2="22" y2="0" stroke="#f5a623" stroke-width="8"></line></g>
+
+</svg>

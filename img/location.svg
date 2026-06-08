@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bgsky)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<rect x="120" y="150" width="560" height="320" rx="20" fill="#0a3d62" stroke="#fff" stroke-width="8" opacity=".85"></rect>
+<g stroke="#9fc6e6" stroke-width="8" fill="none" opacity=".7"><path d="M120 280 H300 L380 360 H680"></path><path d="M250 150 V330 L330 470"></path><path d="M520 150 V300 H680"></path></g>
+<g transform="translate(420 300)"><path d="M0 -110 a78 78 0 0 1 78 78 C78 30 0 130 0 130 C0 130 -78 30 -78 -32 a78 78 0 0 1 78 -78 Z" fill="#f5a623" stroke="#fff" stroke-width="10"></path><g transform="translate(0 -40) scale(2)"><path d="M0 -26C0 -26 -18 -2 -18 8a18 18 0 0 0 36 0C18 -2 0 -26 0 -26Z" fill="#fff" stroke="#fff" stroke-width="2.00"></path><path d="M-8 7a8 8 0 0 0 5 8" fill="none" stroke="#fff" stroke-width="1.50" stroke-linecap="round" opacity=".75"></path></g></g>
+
+</svg>

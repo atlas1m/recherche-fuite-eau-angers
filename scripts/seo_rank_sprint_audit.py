@@ -145,7 +145,7 @@ def audit():
         errors.append(f'homepage: assets non-photo interdits dans la template {non_photo_home_imgs}')
     svg_home_imgs = [src for src in unique_home_imgs if re.search(r'\.svg(?:$|[?#])', src, re.I)]
     if svg_home_imgs:
-        errors.append(f'homepage: SVG/illustrations interdits — copier la template photo {svg_home_imgs}')
+        errors.append(f'homepage: SVG/illustrations interdits - copier la template photo {svg_home_imgs}')
     repeated_home_imgs = {src: home_img_srcs.count(src) for src in unique_home_imgs if home_img_srcs.count(src) > 2}
     if repeated_home_imgs:
         errors.append(f'homepage: photo répétée trop souvent {repeated_home_imgs}')

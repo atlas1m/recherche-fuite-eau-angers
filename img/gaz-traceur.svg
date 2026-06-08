@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bg)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<rect x="0" y="360" width="800" height="240" fill="#06243a" opacity=".4"></rect>
+<line x1="0" y1="360" x2="800" y2="360" stroke="#fff" stroke-width="8" opacity=".5"></line>
+<rect x="120" y="470" width="560" height="60" rx="30" fill="#0a3d62" stroke="#fff" stroke-width="10"></rect>
+<path d="M400 470 l-14 -26 m14 26 l16 -22" stroke="#f5a623" stroke-width="9" stroke-linecap="round"></path>
+<g fill="#f5a623"><circle cx="400" cy="430" r="11"></circle><circle cx="384" cy="380" r="9"></circle><circle cx="418" cy="350" r="13"></circle><circle cx="398" cy="300" r="8"></circle><circle cx="426" cy="250" r="11"></circle><circle cx="406" cy="200" r="7"></circle></g>
+<g transform="translate(410 140)"><rect x="-60" y="-70" width="120" height="110" rx="16" fill="#cfe7fb" stroke="#fff" stroke-width="10"></rect><circle cx="0" cy="-15" r="30" fill="#1f7fc4"></circle><rect x="-34" y="40" width="68" height="20" rx="8" fill="#0a3d62" stroke="#fff" stroke-width="6"></rect></g>
+
+</svg>

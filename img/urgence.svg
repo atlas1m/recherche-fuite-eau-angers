@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bg)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<g transform="translate(150 250)">
+<path d="M0 0 H300 a40 40 0 0 1 40 40 V60 H440 L470 130 V210 H40 a40 40 0 0 1 -40 -40 Z" fill="#0a3d62" stroke="#fff" stroke-width="10"></path>
+<rect x="350" y="80" width="80" height="55" rx="8" fill="#3c9ee5" stroke="#fff" stroke-width="8"></rect>
+<circle cx="120" cy="225" r="42" fill="#06243a" stroke="#fff" stroke-width="10"></circle><circle cx="120" cy="225" r="14" fill="#cfe7fb"></circle>
+<circle cx="380" cy="225" r="42" fill="#06243a" stroke="#fff" stroke-width="10"></circle><circle cx="380" cy="225" r="14" fill="#cfe7fb"></circle>
+<g transform="translate(140 90) scale(1.7)"><path d="M0 -26C0 -26 -18 -2 -18 8a18 18 0 0 0 36 0C18 -2 0 -26 0 -26Z" fill="#bfe0fb" stroke="#fff" stroke-width="2.35"></path><path d="M-8 7a8 8 0 0 0 5 8" fill="none" stroke="#fff" stroke-width="1.76" stroke-linecap="round" opacity=".75"></path></g>
+<text x="185" y="120" font-family="Archivo, sans-serif" font-weight="800" font-size="46" fill="#fff">24/7</text>
+</g>
+<g stroke="#f5a623" stroke-width="10" stroke-linecap="round" opacity=".8"><line x1="60" y1="300" x2="120" y2="300"></line><line x1="40" y1="350" x2="110" y2="350"></line><line x1="70" y1="400" x2="120" y2="400"></line></g>
+
+</svg>

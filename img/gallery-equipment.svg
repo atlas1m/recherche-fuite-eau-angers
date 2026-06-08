@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bg)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<g transform="translate(200 300)"><rect x="-60" y="-60" width="150" height="130" rx="18" fill="#0a3d62" stroke="#fff" stroke-width="9"></rect><circle cx="18" cy="8" r="40" fill="#cfe7fb" stroke="#fff" stroke-width="8"></circle><circle cx="18" cy="8" r="18" fill="#1f7fc4"></circle></g>
+<g transform="translate(420 320)"><circle r="58" fill="#cfe7fb" stroke="#fff" stroke-width="9"></circle><circle r="22" fill="#f5a623"></circle><rect x="-14" y="56" width="28" height="80" rx="8" fill="#0a3d62" stroke="#fff" stroke-width="7"></rect></g>
+<g transform="translate(600 300)"><circle r="56" fill="none" stroke="#f5a623" stroke-width="13"></circle><g transform="translate(0 0) scale(1.4)"><path d="M0 -26C0 -26 -18 -2 -18 8a18 18 0 0 0 36 0C18 -2 0 -26 0 -26Z" fill="#bfe0fb" stroke="#fff" stroke-width="2.86"></path><path d="M-8 7a8 8 0 0 0 5 8" fill="none" stroke="#fff" stroke-width="2.14" stroke-linecap="round" opacity=".75"></path></g><line x1="40" y1="40" x2="96" y2="96" stroke="#f5a623" stroke-width="18" stroke-linecap="round"></line></g>
+
+</svg>

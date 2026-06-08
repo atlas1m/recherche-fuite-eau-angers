@@ -1,4 +1,4 @@
-# Recherche fuite eau Angers — site MVP
+# Recherche fuite eau Angers - site MVP
 
 Static local SEO MVP.
 

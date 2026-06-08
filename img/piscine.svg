@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3d62"></stop><stop offset="1" stop-color="#1f7fc4"></stop></linearGradient>
+<linearGradient id="bgsky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f7fc4"></stop><stop offset="1" stop-color="#3c9ee5"></stop></linearGradient>
+<linearGradient id="thermal" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#15307a"></stop><stop offset=".45" stop-color="#16a34a"></stop><stop offset=".72" stop-color="#f5d316"></stop><stop offset="1" stop-color="#ef4444"></stop></linearGradient>
+<radialGradient id="hot" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ef4444"></stop><stop offset=".45" stop-color="#f5a623"></stop><stop offset="1" stop-color="#16a34a" stop-opacity="0"></stop></radialGradient>
+<pattern id="dots" width="38" height="38" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="2.6" fill="#fff" opacity="0.06"></circle></pattern>
+</defs>
+<rect width="800" height="600" fill="url(#bgsky)"></rect>
+<rect width="800" height="600" fill="url(#dots)"></rect>
+<circle cx="710" cy="80" r="190" fill="#fff" opacity="0.05"></circle>
+<circle cx="80" cy="540" r="160" fill="#fff" opacity="0.05"></circle>
+
+<path d="M120 250 H680 V470 a40 40 0 0 1 -40 40 H160 a40 40 0 0 1 -40 -40 Z" fill="#0a3d62" stroke="#fff" stroke-width="10"></path>
+<path d="M120 300 q60 -28 120 0 t120 0 t120 0 t120 0 t80 0" fill="none" stroke="#9fd0f5" stroke-width="10"></path>
+<path d="M120 345 q60 -26 120 0 t120 0 t120 0 t120 0 t80 0" fill="none" stroke="#7ec4f2" stroke-width="8" opacity=".7"></path>
+<g fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M600 250 V180 M650 250 V180"></path><path d="M600 215 H650 M600 200 H650"></path></g>
+<g transform="translate(700 360) scale(1.8)"><path d="M0 -26C0 -26 -18 -2 -18 8a18 18 0 0 0 36 0C18 -2 0 -26 0 -26Z" fill="#7ec4f2" stroke="#fff" stroke-width="2.22"></path><path d="M-8 7a8 8 0 0 0 5 8" fill="none" stroke="#fff" stroke-width="1.67" stroke-linecap="round" opacity=".75"></path></g>
+<g fill="#cfe7fb"><circle cx="300" cy="420" r="9"></circle><circle cx="330" cy="390" r="6"></circle><circle cx="280" cy="380" r="5"></circle></g>
+
+</svg>

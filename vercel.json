@@ -5,9 +5,497 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/degat-des-eaux-angers/",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/degat-des-eaux-angers.html",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/degat-des-eaux-angers",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/detection-fuite-eau-angers.html",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/detection-fuite-eau-angers",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/detection-fuite-eau-angers/",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-apres-compteur-angers",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-apres-compteur-angers/",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-apres-compteur-angers.html",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-canalisation-angers.html",
+      "destination": "/inspection-camera/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-canalisation-angers/",
+      "destination": "/inspection-camera/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-canalisation-angers",
+      "destination": "/inspection-camera/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-chauffage-angers/",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-chauffage-angers",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-chauffage-angers.html",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-compteur-eau-angers/",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-compteur-eau-angers.html",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-compteur-eau-angers",
+      "destination": "/reduire-facture-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-douche-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-douche-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-douche-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-plafond-angers/",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-plafond-angers",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-plafond-angers.html",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-salle-de-bain-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-salle-de-bain-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-salle-de-bain-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-carrelage-angers.html",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-carrelage-angers",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-carrelage-angers/",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-evier-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-evier-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-sous-evier-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-toiture-angers/",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-toiture-angers",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/fuite-toiture-angers.html",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/humidite-mur-angers",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/humidite-mur-angers/",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/humidite-mur-angers.html",
+      "destination": "/detecter-fuite-cachee/",
+      "permanent": true
+    },
+    {
+      "source": "/locations/",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/locations",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/locations.html",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/methodologie.html",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/methodologie/",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/methodologie",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/politique-confidentialite",
+      "destination": "/confidentialite/",
+      "permanent": true
+    },
+    {
+      "source": "/politique-confidentialite.html",
+      "destination": "/confidentialite/",
+      "permanent": true
+    },
+    {
+      "source": "/politique-confidentialite/",
+      "destination": "/confidentialite/",
+      "permanent": true
+    },
+    {
+      "source": "/prix-recherche-fuite-eau-angers/",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/prix-recherche-fuite-eau-angers.html",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/prix-recherche-fuite-eau-angers",
+      "destination": "/contact/",
+      "permanent": true
+    },
+    {
+      "source": "/rapport-recherche-fuite-assurance-angers",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/rapport-recherche-fuite-assurance-angers.html",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/rapport-recherche-fuite-assurance-angers/",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-appartement-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-appartement-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-appartement-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-assurance-angers.html",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-assurance-angers",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-assurance-angers/",
+      "destination": "/que-faire-fuite-eau/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-avrille",
+      "destination": "/avrille/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-avrille.html",
+      "destination": "/avrille/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-avrille/",
+      "destination": "/avrille/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-copropriete-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-copropriete-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-copropriete-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-eau-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-eau-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-eau-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-enterree-angers/",
+      "destination": "/gaz-traceur/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-enterree-angers.html",
+      "destination": "/gaz-traceur/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-enterree-angers",
+      "destination": "/gaz-traceur/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-les-ponts-de-ce/",
+      "destination": "/ponts-de-ce/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-les-ponts-de-ce",
+      "destination": "/ponts-de-ce/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-les-ponts-de-ce.html",
+      "destination": "/ponts-de-ce/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maine-et-loire/",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maine-et-loire.html",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maine-et-loire",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maison-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maison-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-maison-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-non-destructive-angers",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-non-destructive-angers/",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-non-destructive-angers.html",
+      "destination": "/detection-non-destructive/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-syndic-angers/",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-syndic-angers",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-syndic-angers.html",
+      "destination": "/recherche-de-fuite/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-thermographie-angers/",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-thermographie-angers.html",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-thermographie-angers",
+      "destination": "/camera-thermique/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-trelaze/",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-trelaze.html",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-trelaze",
+      "destination": "/zones/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-urgence-angers/",
+      "destination": "/intervention-urgence/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-urgence-angers.html",
+      "destination": "/intervention-urgence/",
+      "permanent": true
+    },
+    {
+      "source": "/recherche-fuite-urgence-angers",
+      "destination": "/intervention-urgence/",
+      "permanent": true
     }
   ]
 }
