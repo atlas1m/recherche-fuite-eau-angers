@@ -136,7 +136,7 @@ p{margin:0 0 1.1em;}
 .has-sub:hover .caret{transform:rotate(180deg);}
 .submenu a{display:block;padding:10px 13px;border-radius:7px;color:var(--ink);font-weight:500;font-size:.95rem;}
 .submenu a:hover{background:var(--blue-soft);color:var(--navy);text-decoration:none;}
-.nav-cta{margin-left:8px;}
+.nav-cta{margin-left:8px;white-space:nowrap;flex:none;min-width:max-content;}
 
 .hamburger{display:none;background:none;border:0;cursor:pointer;padding:8px;}
 .hamburger span{display:block;width:24px;height:2.5px;background:var(--navy);margin:5px 0;border-radius:2px;transition:.2s;}
