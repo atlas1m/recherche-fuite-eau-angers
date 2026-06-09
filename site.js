@@ -52,10 +52,9 @@
   /* ---------- TOPBAR + HEADER ---------- */
   var header =
     '<div class="topbar"><div class="wrap">' +
-      '<div class="tb-left">' + icPin + '<span>Mise en relation avec des spécialistes de la recherche de fuite à Angers &amp; dans le Maine-et-Loire (49)</span></div>' +
+      '<div class="tb-left">' + icPin + '<span>Mise en relation avec des professionnels qualifiés de la recherche de fuite à Angers &amp; dans le Maine-et-Loire (49)</span></div>' +
       '<div class="tb-right">' +
         '<a href="' + PHONE_HREF + '">' + icPhone + PHONE_DISPLAY + '</a>' +
-        /* [À CONFIRMER] '7j/7' retiré tant que la disponibilité n'est pas garantie par les partenaires. */
         '<a href="/contact/">' + icClock + 'Devis gratuit</a>' +
       '</div>' +
     '</div></div>' +
@@ -94,7 +93,7 @@
     '<footer class="site-footer"><div class="wrap footer-main">' +
       '<div>' +
         '<div class="foot-brand">' + dropIcon + '<span>Angers Détection Fuite<small>Angers · Détection de fuite</small></span></div>' +
-        '<p>Angers Détection Fuite est un service de mise en relation avec des spécialistes qualifiés de la recherche de fuite d\'eau non destructive à Angers et dans le Maine-et-Loire. Nous ne réalisons pas les interventions : nous vous orientons vers un professionnel partenaire près de chez vous.</p>' +
+        '<p>Angers Détection Fuite est un service de mise en relation avec des professionnels qualifiés de la recherche de fuite d\'eau non destructive à Angers et dans le Maine-et-Loire. Nous ne réalisons pas les interventions : nous vous aidons à cadrer la demande avant orientation vers un interlocuteur adapté.</p>' +
         '<div class="fcontact">' + icPhone + '<a href="' + PHONE_HREF + '">' + PHONE_DISPLAY + '</a></div>' +
         '<div class="fcontact">' + icMail + '<a href="mailto:' + EMAIL + '">' + EMAIL + '</a></div>' +
       '</div>' +
@@ -109,7 +108,6 @@
         '<a href="/que-faire-fuite-eau/">Conseils &amp; FAQ</a>' +
         '<a href="/mentions-legales/">Mentions légales</a>' +
         '<a href="/confidentialite/">Confidentialité</a>' +
-        /* [À CONFIRMER] disponibilité 7j/7 à réactiver si garantie */
         '<div class="fcontact" style="margin-top:14px">' + icClock + '<span>Mise en relation<br>Réponse rapide</span></div>' +
       '</div>' +
     '</div>' +
@@ -127,7 +125,7 @@
   /* ---------- sticky mobile call bar ---------- */
   var callBar =
     '<div class="callbar">' +
-      '<a class="callbar__call" href="' + PHONE_HREF + '">' + icPhone + 'Appeler un spécialiste</a>' +
+      '<a class="callbar__call" href="' + PHONE_HREF + '">' + icPhone + 'Appeler pour qualifier</a>' +
       '<a class="callbar__quote" href="/contact/">Devis gratuit</a>' +
     '</div>';
   document.body.insertAdjacentHTML("beforeend", callBar);
@@ -164,10 +162,22 @@
     m.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); load(); } });
   });
 
-  /* fake form submit */
+  /* quote form fallback: no fake success, opens a prefilled email */
   document.querySelectorAll("form[data-quote]").forEach(function (f) {
     f.addEventListener("submit", function (e) {
       e.preventDefault();
+      var lines = [];
+      f.querySelectorAll(".field").forEach(function (field) {
+        var label = field.querySelector("label");
+        var input = field.querySelector("input, textarea");
+        if (!input) return;
+        var name = label ? label.textContent.replace("*", "").trim() : (input.placeholder || "Champ");
+        var value = (input.value || "").trim();
+        if (value) lines.push(name + " : " + value);
+      });
+      var subject = encodeURIComponent("Demande de devis recherche de fuite Angers");
+      var body = encodeURIComponent(lines.join("\n") || "Bonjour, je souhaite être recontacté pour une recherche de fuite à Angers.");
+      window.location.href = "mailto:" + EMAIL + "?subject=" + subject + "&body=" + body;
       var ok = f.querySelector(".form-ok");
       f.querySelectorAll(".field,.btn").forEach(function (el) { el.style.display = "none"; });
       if (ok) ok.style.display = "block";
